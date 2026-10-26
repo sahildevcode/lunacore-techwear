@@ -129,16 +129,21 @@
         </span>
       </div>
 
-      <!-- Center: Navigation Pills (from top of image: Main Page, Catalog, Product page, Cart/Menu, Collection) -->
+      <!-- Center: Navigation Pills -->
       <nav class="flex items-center p-1 bg-brand-card/90 rounded-full border border-brand-border overflow-x-auto no-scrollbar max-w-full">
         <a href="#hero" class="nav-pill active px-3.5 py-1.5 rounded-full text-white bg-brand-accent transition shadow-sm font-medium whitespace-nowrap">Main Page</a>
         <a href="#catalog" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Catalog</a>
-        <a href="#product-highlight" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Product Page</a>
+        <a href="#best-sellers" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Best Sellers</a>
+        <a href="#offers" class="nav-pill px-3.5 py-1.5 rounded-full text-amber-400 hover:text-amber-300 font-semibold transition whitespace-nowrap flex items-center gap-1">
+          <i data-lucide="zap" class="w-3 h-3 fill-amber-400 text-amber-400"></i>
+          <span>Offers</span>
+        </a>
+        <a href="#testimonials" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Testimonials</a>
+        <a href="#lookbook" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Collection</a>
         <button onclick="toggleCart()" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
-          <span>Cart / Menu</span>
+          <span>Cart</span>
           <span id="top-cart-badge" class="px-1.5 py-0.2 text-[10px] bg-brand-accent text-white rounded-full font-bold">0</span>
         </button>
-        <a href="#lookbook" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Collection</a>
       </nav>
 
       <!-- Right: Responsive Mode Switch (Desktop / Mobile Preview from top-right of mockup) -->
@@ -180,12 +185,20 @@
           </div>
 
           <!-- Main Nav Links -->
-          <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider font-mono uppercase">
+          <nav class="hidden md:flex items-center gap-6 text-xs font-semibold tracking-wider font-mono uppercase">
             <a href="#catalog" onclick="filterCategory('all')" class="text-neutral-300 hover:text-brand-accent transition">NEW</a>
             <a href="#catalog" onclick="filterCategory('men')" class="text-neutral-400 hover:text-brand-accent transition">MEN</a>
             <a href="#catalog" onclick="filterCategory('women')" class="text-neutral-400 hover:text-brand-accent transition">WOMEN</a>
-            <a href="#catalog" onclick="filterCategory('accessories')" class="text-neutral-400 hover:text-brand-accent transition">ACCESSORIES</a>
-            <a href="#lookbook" class="text-neutral-400 hover:text-brand-accent transition">COLLECTIONS</a>
+            <a href="#best-sellers" class="text-neutral-300 hover:text-brand-accent transition flex items-center gap-1">
+              <span>BEST SELLERS</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+            </a>
+            <a href="#offers" class="text-amber-400 hover:text-amber-300 font-bold transition flex items-center gap-1">
+              <i data-lucide="zap" class="w-3 h-3 fill-amber-400"></i>
+              <span>OFFERS</span>
+            </a>
+            <a href="#testimonials" class="text-neutral-400 hover:text-brand-accent transition">REVIEWS</a>
+            <a href="#lookbook" class="text-neutral-400 hover:text-brand-accent transition">LOOKBOOK</a>
           </nav>
 
           <!-- Right Action Controls -->
@@ -283,21 +296,21 @@
                   徒尔街头 • 01
                 </div>
 
-                <!-- Floating Product Pill Card (Matches the exact card in the reference hero!) -->
+                <!-- Floating Product Pill Card (Indian Rupee Pricing) -->
                 <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-card border border-white/15 flex items-center justify-between gap-4 animate-float shadow-2xl">
                   <div class="space-y-0.5">
                     <div class="text-[10px] font-mono text-brand-accent uppercase tracking-wider font-semibold">Featured Garment</div>
-                    <div class="text-sm font-bold text-white">KIMONO LIU KANG</div>
+                    <div class="text-sm font-bold text-white">KIMONO LIU KANG MOTO</div>
                     <div class="flex items-center gap-2 text-xs font-mono">
-                      <span class="text-white font-bold text-sm">$130</span>
-                      <span class="line-through text-neutral-500">$200</span>
-                      <span class="px-1.5 py-0.5 rounded bg-brand-accent/20 text-brand-accent text-[10px] font-bold">-35%</span>
+                      <span class="text-white font-bold text-sm">₹4,999</span>
+                      <span class="line-through text-neutral-500">₹7,999</span>
+                      <span class="px-1.5 py-0.5 rounded bg-brand-accent/20 text-brand-accent text-[10px] font-bold">-37%</span>
                     </div>
                   </div>
 
                   <!-- Quick Add Button -->
                   <button 
-                    onclick="addToBag({id: 'hero-kimono', name: 'KIMONO LIU KANG', price: 130, oldPrice: 200, category: 'men', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80', tag: 'SALE'})"
+                    onclick="addToBag({id: 'hero-kimono', name: 'KIMONO LIU KANG MOTO', price: 4999, oldPrice: 7999, category: 'men', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80', tag: 'SALE'})"
                     class="px-5 py-2.5 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center gap-1.5 whitespace-nowrap glow-orange"
                   >
                     <span>ADD TO BAG</span>
@@ -350,6 +363,129 @@
           <!-- Product Cards Grid (matches 4 tall portrait cards in reference) -->
           <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <!-- Cards populated dynamically via app.js -->
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 2.5 BEST SELLERS SECTION / PAGE -->
+        <!-- ============================================== -->
+        <section id="best-sellers" class="px-6 sm:px-10 py-16 border-t border-white/[0.06] bg-[#0c0d11]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/30 text-brand-accent text-xs font-mono">
+                <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+                <span>HIGHEST VELOCITY GARMENTS</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-bold font-display text-white tracking-tight flex items-center gap-3">
+                <span>BEST SELLING COLLECTION</span>
+                <span class="text-xs font-mono font-normal text-amber-400 px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center gap-1">
+                  <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i>
+                  <span>4.9 / 5.0 RATED</span>
+                </span>
+              </h2>
+            </div>
+
+            <p class="text-neutral-400 text-xs font-mono max-w-sm">
+              Tested in megacity monsoons & sub-zero conditions. Backed by 2,450+ verified customer reviews.
+            </p>
+          </div>
+
+          <!-- Bestsellers Cards Grid -->
+          <div id="bestsellers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Populated via app.js -->
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 2.8 EXCLUSIVE OFFERS & FLASH PROMOS PAGE -->
+        <!-- ============================================== -->
+        <section id="offers" class="px-6 sm:px-10 py-16 border-t border-brand-accent/30 bg-gradient-to-b from-[#161214] via-[#0f1015] to-[#0c0d10] relative overflow-hidden">
+          
+          <!-- Background Glow -->
+          <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 mb-10">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+              <div class="space-y-3">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-accent text-white font-mono text-xs font-bold shadow-lg glow-orange">
+                  <i data-lucide="zap" class="w-3.5 h-3.5 fill-white"></i>
+                  <span>FESTIVE CYBER DROP • LIMITED TIME</span>
+                </div>
+                
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+                  EXCLUSIVE OFFERS & FLASH DEALS
+                </h2>
+                
+                <p class="text-neutral-300 text-xs sm:text-sm max-w-lg leading-relaxed">
+                  Claim special tiered discounts, limited prototype editions, and flat promo vouchers. Free express shipping on all orders across India above ₹2,999.
+                </p>
+              </div>
+
+              <!-- Live Countdown Clock -->
+              <div class="flex items-center gap-3 p-4 rounded-2xl bg-black/60 backdrop-blur-md border border-brand-accent/40 shadow-xl">
+                <div class="text-[10px] font-mono text-neutral-400 uppercase tracking-widest text-right pr-2 border-r border-white/10 hidden sm:block">
+                  FLASH SALE<br><span class="text-brand-accent font-bold">CLOSES IN</span>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-center">
+                  <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <div id="offer-timer-hours" class="text-lg font-bold text-white">14</div>
+                    <div class="text-[9px] text-neutral-400">HOURS</div>
+                  </div>
+                  <span class="text-brand-accent font-bold text-lg">:</span>
+                  <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <div id="offer-timer-mins" class="text-lg font-bold text-white">32</div>
+                    <div class="text-[9px] text-neutral-400">MINS</div>
+                  </div>
+                  <span class="text-brand-accent font-bold text-lg">:</span>
+                  <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <div id="offer-timer-secs" class="text-lg font-bold text-brand-accent">45</div>
+                    <div class="text-[9px] text-neutral-400">SECS</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coupon Vouchers Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+              <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-brand-accent/50 transition flex items-center justify-between gap-4">
+                <div>
+                  <div class="text-[10px] font-mono text-brand-accent font-bold uppercase">FLAT 20% DISCOUNT</div>
+                  <div class="text-xs text-neutral-400">Apply code at bag summary</div>
+                </div>
+                <button onclick="copyCoupon('TECH20')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-brand-accent text-white font-mono text-xs font-bold transition flex items-center gap-1.5">
+                  <span>TECH20</span>
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/50 transition flex items-center justify-between gap-4">
+                <div>
+                  <div class="text-[10px] font-mono text-emerald-400 font-bold uppercase">FLAT 50% MEGA FLASH</div>
+                  <div class="text-xs text-neutral-400">Applicable on selected prototypes</div>
+                </div>
+                <button onclick="copyCoupon('FESTIVE50')" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-emerald-600 text-white font-mono text-xs font-bold transition flex items-center gap-1.5">
+                  <span>FESTIVE50</span>
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between gap-4 sm:col-span-2 md:col-span-1">
+                <div>
+                  <div class="text-[10px] font-mono text-amber-400 font-bold uppercase">FREE EXPRESS SHIPPING</div>
+                  <div class="text-xs text-neutral-400">Zero shipping fee across India</div>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 font-mono text-[10px] font-bold">
+                  AUTO APPLIED
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flash Deal Products Grid -->
+          <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Populated via app.js -->
           </div>
         </section>
 
@@ -483,6 +619,47 @@
               </button>
             </div>
 
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 4.5 TESTIMONIALS & REVIEWS SECTION / PAGE -->
+        <!-- ============================================== -->
+        <section id="testimonials" class="px-6 sm:px-10 py-16 border-t border-white/[0.06] bg-[#0d0e12] relative">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div class="space-y-2">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-xs">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                <span>VERIFIED OPERATOR FEEDBACK</span>
+              </div>
+              <h2 class="text-2xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+                CLIENT & OPERATOR REVIEWS
+              </h2>
+              <p class="text-neutral-400 text-xs sm:text-sm font-mono max-w-lg leading-relaxed">
+                Authentic reports from cyberpunk stylists, architects, and techwear collectors worldwide.
+              </p>
+            </div>
+
+            <!-- Aggregate Score Card -->
+            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/10 self-start md:self-auto">
+              <div class="text-3xl font-extrabold font-display text-white">4.9<span class="text-xs text-neutral-500 font-mono">/5.0</span></div>
+              <div class="space-y-0.5 border-l border-white/10 pl-3">
+                <div class="flex items-center gap-1 text-amber-400">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                </div>
+                <div class="text-[10px] font-mono text-neutral-400">Based on 2,450+ verified ratings</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonials Cards Grid -->
+          <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Populated via app.js -->
           </div>
         </section>
 
@@ -671,11 +848,11 @@
         <div class="space-y-1.5 text-xs font-mono">
           <div class="flex justify-between text-neutral-400">
             <span>SUBTOTAL</span>
-            <span id="cart-subtotal" class="text-white font-bold">$0.00</span>
+            <span id="cart-subtotal" class="text-white font-bold">₹0</span>
           </div>
           <div class="flex justify-between text-neutral-400">
             <span>DISCOUNT</span>
-            <span id="cart-discount" class="text-emerald-400">-$0.00</span>
+            <span id="cart-discount" class="text-emerald-400">-₹0</span>
           </div>
           <div class="flex justify-between text-neutral-400">
             <span>ESTIMATED TAX & SHIPPING</span>
@@ -683,7 +860,7 @@
           </div>
           <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/10">
             <span>TOTAL</span>
-            <span id="cart-total" class="text-brand-accent text-base">$0.00</span>
+            <span id="cart-total" class="text-brand-accent text-base">₹0</span>
           </div>
         </div>
 
@@ -720,8 +897,8 @@
             <h3 class="text-2xl font-bold font-display text-white" id="modal-product-name">Product Name</h3>
             
             <div class="flex items-center gap-3 font-mono">
-              <span class="text-xl font-bold text-brand-accent" id="modal-product-price">$140</span>
-              <span class="text-sm line-through text-neutral-500" id="modal-product-oldprice">$220</span>
+              <span class="text-xl font-bold text-brand-accent" id="modal-product-price">₹4,999</span>
+              <span class="text-sm line-through text-neutral-500" id="modal-product-oldprice">₹7,999</span>
               <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">IN STOCK</span>
             </div>
 
@@ -785,26 +962,26 @@
       <div class="space-y-4 text-xs font-mono">
         <div>
           <label class="block text-neutral-400 mb-1.5">FULL NAME</label>
-          <input type="text" value="Takeshi Kovacs" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
+          <input type="text" value="Sahil Sharma" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
         </div>
 
         <div>
-          <label class="block text-neutral-400 mb-1.5">DELIVERY ADDRESS</label>
-          <input type="text" value="Shibuya Ward, Neo Tokyo 150-0002" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
+          <label class="block text-neutral-400 mb-1.5">DELIVERY ADDRESS (INDIA & GLOBAL)</label>
+          <input type="text" value="Plot 42, Bandra Cyber District, Mumbai 400050" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
         </div>
 
         <div>
           <label class="block text-neutral-400 mb-1.5">PAYMENT METHOD</label>
           <div class="grid grid-cols-3 gap-2">
-            <button class="py-2 rounded-lg bg-brand-accent text-white font-bold border border-brand-accent">CREDIT CARD</button>
-            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">APPLE PAY</button>
-            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">CRYPTO</button>
+            <button class="py-2 rounded-lg bg-brand-accent text-white font-bold border border-brand-accent">UPI / GPAY</button>
+            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">CARD / EMI</button>
+            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">NET BANKING</button>
           </div>
         </div>
 
         <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex justify-between font-bold">
           <span class="text-neutral-300">AMOUNT DUE:</span>
-          <span id="checkout-amount-display" class="text-brand-accent text-sm">$0.00</span>
+          <span id="checkout-amount-display" class="text-brand-accent text-sm">₹0</span>
         </div>
       </div>
 

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUNACORE™ // SS23 Future Techwear & Urban Gear</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0c0d10',
+              card: '#14161b',
+              cardHover: '#1c1f26',
+              border: 'rgba(255, 255, 255, 0.08)',
+              subtle: '#8a8f9d',
+              accent: '#ff4c1e',      /* Iconic Orange accent from design */
+              accentHover: '#e03d12',
+              accentGlow: 'rgba(255, 76, 30, 0.25)',
+              neon: '#00f2fe'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            kanji: ['"Noto Sans SC"', 'sans-serif']
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 5s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0c0d10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232731;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff4c1e;
+    }
+
+    .glass-card {
+      background: rgba(20, 22, 27, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-hover:hover {
+      background: rgba(28, 31, 38, 0.85);
+      border-color: rgba(255, 76, 30, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .glow-orange {
+      box-shadow: 0 0 25px rgba(255, 76, 30, 0.3);
+    }
+
+    /* Device frame styling for mobile toggle */
+    .mobile-frame-wrapper {
+      max-width: 420px;
+      margin: 20px auto;
+      border: 10px solid #1e2229;
+      border-radius: 46px;
+      box-shadow: 0 25px 70px -10px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.1);
+      overflow: hidden;
+      transition: max-width 0.4s ease;
+    }
+
+    /* Hide horizontal scroll indicators */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#090a0c] text-neutral-200 font-sans selection:bg-brand-accent selection:text-white antialiased min-h-screen">
+
+  <!-- TOP DESIGNER BAR (Exactly like the mockup header navigation pills) -->
+  <div class="sticky top-0 z-50 bg-[#090a0c]/90 backdrop-blur-xl border-b border-brand-border px-4 py-2.5 transition-all">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between text-xs font-medium">
+      <!-- Left: Logo pill & Status -->
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-brand-card border border-brand-border text-brand-accent font-mono text-[11px] font-bold">
+          [01]
+        </span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 text-neutral-400 font-mono tracking-wider text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          SYS.ONLINE // PROTOTYPE READY
+        </span>
+      </div>
+
+      <!-- Center: Navigation Pills (from top of image: Main Page, Catalog, Product page, Cart/Menu, Collection) -->
+      <nav class="flex items-center p-1 bg-brand-card/90 rounded-full border border-brand-border overflow-x-auto no-scrollbar max-w-full">
+        <a href="#hero" class="nav-pill active px-3.5 py-1.5 rounded-full text-white bg-brand-accent transition shadow-sm font-medium whitespace-nowrap">Main Page</a>
+        <a href="#catalog" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Catalog</a>
+        <a href="#product-highlight" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Product Page</a>
+        <button onclick="toggleCart()" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>Cart / Menu</span>
+          <span id="top-cart-badge" class="px-1.5 py-0.2 text-[10px] bg-brand-accent text-white rounded-full font-bold">0</span>
+        </button>
+        <a href="#lookbook" class="nav-pill px-3.5 py-1.5 rounded-full text-neutral-400 hover:text-white transition whitespace-nowrap">Collection</a>
+      </nav>
+
+      <!-- Right: Responsive Mode Switch (Desktop / Mobile Preview from top-right of mockup) -->
+      <div class="flex items-center gap-2">
+        <button id="view-mode-toggle" onclick="toggleDeviceView()" class="flex items-center gap-2 px-3 py-1.5 bg-brand-card hover:bg-brand-cardHover border border-brand-border rounded-full text-neutral-300 hover:text-white transition text-[11px] font-mono">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-brand-accent"></i>
+          <span id="view-mode-label">Desktop View</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER (Supports desktop & interactive mobile simulator toggle) -->
+  <div id="main-frame" class="w-full transition-all duration-500 ease-out">
+    
+    <div class="max-w-[1380px] mx-auto px-3 sm:px-6 py-4">
+
+      <!-- MAIN SITE OUTER CARD (Rounded futuristic viewport container from image) -->
+      <div class="bg-[#101115] rounded-[32px] sm:rounded-[40px] border border-brand-border/70 overflow-hidden shadow-2xl relative">
+
+        <!-- HEADER & NAV (Matching UI screenshot top bar) -->
+        <header class="px-6 sm:px-10 py-6 border-b border-white/[0.04] flex items-center justify-between relative z-20 bg-[#101115]/80 backdrop-blur-md">
+          <!-- Logo & Kanji -->
+          <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-brand-accent/50 transition">
+              <svg class="w-5 h-5 text-brand-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="text-xs font-mono tracking-widest text-neutral-400 group-hover:text-white transition flex items-center gap-1.5">
+                <span>LUNACORE</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-brand-accent/20 text-brand-accent font-semibold font-mono">001</span>
+              </div>
+              <div class="text-[10px] font-kanji text-neutral-500 tracking-wider">徒尔街头 • TECHWEAR</div>
+            </div>
+          </div>
+
+          <!-- Main Nav Links -->
+          <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider font-mono uppercase">
+            <a href="#catalog" onclick="filterCategory('all')" class="text-neutral-300 hover:text-brand-accent transition">NEW</a>
+            <a href="#catalog" onclick="filterCategory('men')" class="text-neutral-400 hover:text-brand-accent transition">MEN</a>
+            <a href="#catalog" onclick="filterCategory('women')" class="text-neutral-400 hover:text-brand-accent transition">WOMEN</a>
+            <a href="#catalog" onclick="filterCategory('accessories')" class="text-neutral-400 hover:text-brand-accent transition">ACCESSORIES</a>
+            <a href="#lookbook" class="text-neutral-400 hover:text-brand-accent transition">COLLECTIONS</a>
+          </nav>
+
+          <!-- Right Action Controls -->
+          <div class="flex items-center gap-3 font-mono text-xs">
+            <button onclick="openSearchModal()" class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition" title="Search">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </button>
+            <button onclick="openAuthModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition border border-white/5">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i>
+              <span>LOGIN</span>
+            </button>
+            <button onclick="toggleCart()" class="relative flex items-center gap-2 px-4 py-2 rounded-full bg-brand-card hover:bg-brand-cardHover border border-white/10 text-white transition">
+              <i data-lucide="shopping-bag" class="w-4 h-4 text-brand-accent"></i>
+              <span class="font-semibold">CART</span>
+              <span id="header-cart-count" class="w-5 h-5 rounded-full bg-brand-accent text-white text-[11px] flex items-center justify-center font-bold">0</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- ============================================== -->
+        <!-- 1. HERO SECTION (1:1 with Reference Design) -->
+        <!-- ============================================== -->
+        <section id="hero" class="relative min-h-[580px] lg:min-h-[660px] bg-gradient-to-b from-[#101115] via-[#12141a] to-[#0c0d10] flex items-center overflow-hidden px-6 sm:px-14 py-12">
+          
+          <!-- Background Ambient Glow & Tech Grid -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,76,30,0.08),transparent_60%)] pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative z-10">
+            
+            <!-- Hero Left Copy -->
+            <div class="lg:col-span-5 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/30 text-brand-accent font-mono text-xs">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                LIMITED EDITION DROP // 2026
+              </div>
+
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-display text-white leading-none">
+                SS23 <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">SALE</span>
+              </h1>
+
+              <p class="text-neutral-400 text-sm sm:text-base leading-relaxed max-w-md">
+                Style and comfort in one piece — feel the difference with our comfortable and stylish collections engineered for urban exploration and modular performance.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <a href="#catalog" class="px-7 py-3.5 rounded-full bg-brand-accent hover:bg-brand-accentHover text-white font-semibold text-xs tracking-wider uppercase transition flex items-center gap-2 shadow-lg shadow-brand-accent/20 glow-orange">
+                  <span>DISCOVER CATALOG</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#lookbook" class="px-6 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono text-xs uppercase transition">
+                  PF23 LOOKBOOK
+                </a>
+              </div>
+
+              <!-- Quick Stats -->
+              <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-sm font-mono text-xs">
+                <div>
+                  <div class="text-xl font-bold text-white">3-PLY</div>
+                  <div class="text-neutral-500 text-[10px]">WATERPROOF</div>
+                </div>
+                <div>
+                  <div class="text-xl font-bold text-white">CORDURA®</div>
+                  <div class="text-neutral-500 text-[10px]">FABRIC WEAVE</div>
+                </div>
+                <div>
+                  <div class="text-xl font-bold text-brand-accent">24H</div>
+                  <div class="text-neutral-500 text-[10px]">FAST DISPATCH</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Center & Right: Model Showcase with Floating Card (matches the reference picture) -->
+            <div class="lg:col-span-7 relative flex justify-center items-center">
+              
+              <!-- Subtle Model Container Frame -->
+              <div class="relative w-full max-w-[460px] sm:max-w-[500px] h-[480px] sm:h-[560px] rounded-3xl overflow-hidden bg-gradient-to-b from-[#181a22] to-[#0c0d10] border border-white/10 flex items-end justify-center group shadow-2xl">
+                
+                <!-- Background Kanji Watermark -->
+                <div class="absolute top-10 right-6 font-kanji text-7xl font-bold text-white/[0.04] select-none pointer-events-none tracking-widest leading-none">
+                  徒尔<br>街头
+                </div>
+
+                <!-- High-res Techwear Clothes / Jacket Image -->
+                <img 
+                  id="hero-model-img"
+                  src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=80" 
+                  alt="Kimono Liu Kang Garment" 
+                  class="w-full h-full object-cover object-center transition duration-700 group-hover:scale-105 filter contrast-110"
+                />
+
+                <!-- Kanji Strip on model garment overlay aesthetic -->
+                <div class="absolute left-8 top-1/3 px-2 py-4 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-white font-kanji text-xs writing-vertical tracking-widest hidden sm:block">
+                  徒尔街头 • 01
+                </div>
+
+                <!-- Floating Product Pill Card (Matches the exact card in the reference hero!) -->
+                <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-card border border-white/15 flex items-center justify-between gap-4 animate-float shadow-2xl">
+                  <div class="space-y-0.5">
+                    <div class="text-[10px] font-mono text-brand-accent uppercase tracking-wider font-semibold">Featured Garment</div>
+                    <div class="text-sm font-bold text-white">KIMONO LIU KANG</div>
+                    <div class="flex items-center gap-2 text-xs font-mono">
+                      <span class="text-white font-bold text-sm">$130</span>
+                      <span class="line-through text-neutral-500">$200</span>
+                      <span class="px-1.5 py-0.5 rounded bg-brand-accent/20 text-brand-accent text-[10px] font-bold">-35%</span>
+                    </div>
+                  </div>
+
+                  <!-- Quick Add Button -->
+                  <button 
+                    onclick="addToBag({id: 'hero-kimono', name: 'KIMONO LIU KANG', price: 130, oldPrice: 200, category: 'men', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80', tag: 'SALE'})"
+                    class="px-5 py-2.5 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center gap-1.5 whitespace-nowrap glow-orange"
+                  >
+                    <span>ADD TO BAG</span>
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+
+                <!-- Pagination Dots from Reference -->
+                <div class="absolute top-4 left-6 flex items-center gap-1.5">
+                  <span class="w-6 h-1 rounded-full bg-brand-accent"></span>
+                  <span class="w-1.5 h-1 rounded-full bg-white/30"></span>
+                  <span class="w-1.5 h-1 rounded-full bg-white/30"></span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 2. NEW ARRIVALS GRID (4-column row from mockup) -->
+        <!-- ============================================== -->
+        <section id="catalog" class="px-6 sm:px-10 py-14 border-t border-white/[0.06] bg-[#0e1014]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-3">
+              <h2 class="text-xl sm:text-2xl font-bold font-display tracking-tight text-white flex items-center gap-2">
+                <span>NEW ARRIVALS</span>
+                <span class="text-xs font-mono font-normal text-brand-accent px-2 py-0.5 rounded-full bg-brand-accent/10 border border-brand-accent/20">(12)</span>
+              </h2>
+            </div>
+
+            <!-- Filter Pills & Shop All -->
+            <div class="flex flex-wrap items-center gap-2">
+              <div class="flex items-center bg-brand-card p-1 rounded-full border border-white/5 text-xs font-mono">
+                <button onclick="filterCategory('all')" class="cat-filter-btn active px-3 py-1 rounded-full text-white bg-white/10 transition">ALL</button>
+                <button onclick="filterCategory('men')" class="cat-filter-btn px-3 py-1 rounded-full text-neutral-400 hover:text-white transition">MEN</button>
+                <button onclick="filterCategory('women')" class="cat-filter-btn px-3 py-1 rounded-full text-neutral-400 hover:text-white transition">WOMEN</button>
+                <button onclick="filterCategory('accessories')" class="cat-filter-btn px-3 py-1 rounded-full text-neutral-400 hover:text-white transition">GEAR</button>
+              </div>
+
+              <button onclick="filterCategory('all')" class="px-4 py-2 rounded-full border border-white/10 hover:border-brand-accent/50 text-neutral-300 hover:text-white text-xs font-mono transition flex items-center gap-1.5">
+                <span>SHOP ALL</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-brand-accent"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Cards Grid (matches 4 tall portrait cards in reference) -->
+          <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Cards populated dynamically via app.js -->
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 3. THREE CATEGORY BANNERS (MEN, ACCESSORIES, WOMEN) -->
+        <!-- Matches the 3 horizontal cards below New Arrivals in image -->
+        <!-- ============================================== -->
+        <section class="px-6 sm:px-10 py-10 border-t border-white/[0.06] bg-[#0b0c0f]">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            
+            <!-- Category 1: MEN'S CLOTHING (Technical Jacket) -->
+            <div onclick="filterCategory('men'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-white/10 shadow-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80" 
+                alt="Men's Jacket Clothing" 
+                class="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+              
+              <!-- Bottom Pill Label -->
+              <div class="absolute bottom-5 left-5 right-5 flex items-center justify-between p-3.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 group-hover:border-brand-accent/60 transition">
+                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">MEN'S CLOTHING</span>
+                <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-brand-accent flex items-center justify-center text-white transition">
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 2: ACCESSORIES / CARGO APPAREL -->
+            <div onclick="filterCategory('accessories'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-white/10 shadow-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80" 
+                alt="Tactical Cargo Pants Apparel" 
+                class="w-full h-full object-cover object-center filter contrast-110 group-hover:scale-105 transition duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+              
+              <!-- Bottom Pill Label -->
+              <div class="absolute bottom-5 left-5 right-5 flex items-center justify-between p-3.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 group-hover:border-brand-accent/60 transition">
+                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">TACTICAL PANTS & GEAR</span>
+                <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-brand-accent flex items-center justify-center text-white transition">
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 3: WOMEN'S CLOTHING (Streetwear Coat/Outfit) -->
+            <div onclick="filterCategory('women'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer border border-white/10 shadow-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" 
+                alt="Women's Streetwear Clothing" 
+                class="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+              
+              <!-- Bottom Pill Label -->
+              <div class="absolute bottom-5 left-5 right-5 flex items-center justify-between p-3.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 group-hover:border-brand-accent/60 transition">
+                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">WOMEN'S CLOTHING</span>
+                <div class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-brand-accent flex items-center justify-center text-white transition">
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 4. EXPLORE COLLECTIONS: LUNACORE PF23 HERO -->
+        <!-- Matches the wide collection banner with "LUNACORE PF23 COLLECTION" -->
+        <!-- ============================================== -->
+        <section id="lookbook" class="px-6 sm:px-10 py-10 border-t border-white/[0.06] bg-[#0c0d10]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xs font-mono uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+              <span>EXPLORE COLLECTIONS</span>
+              <span class="text-brand-accent">(3)</span>
+            </h3>
+            <div class="flex items-center gap-2">
+              <button onclick="prevCollection()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition border border-white/5">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <button onclick="nextCollection()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition border border-white/5">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Wide Cinematic Banner Card -->
+          <div class="relative h-[420px] sm:h-[480px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl flex flex-col justify-between p-6 sm:p-10 group">
+            
+            <!-- Collection BG Image (Dynamic Clothes Carousel) -->
+            <img 
+              id="collection-bg"
+              src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=1600&q=80" 
+              alt="Lunacore PF23 Collection Clothes" 
+              class="absolute inset-0 w-full h-full object-cover object-center filter brightness-75 contrast-110 transition-all duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+            <!-- Top Row: Badge -->
+            <div class="relative z-10 flex items-center justify-between">
+              <span class="px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white tracking-widest uppercase">
+                LOOKBOOK // VOLUME 04
+              </span>
+              <div class="flex items-center gap-1.5" id="collection-indicators">
+                <span class="w-6 h-1 rounded-full bg-brand-accent"></span>
+                <span class="w-2 h-1 rounded-full bg-white/30"></span>
+                <span class="w-2 h-1 rounded-full bg-white/30"></span>
+              </div>
+            </div>
+
+            <!-- Center Title Watermark / Headline -->
+            <div class="relative z-10 text-center my-auto space-y-2">
+              <h2 id="collection-title" class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white tracking-tight leading-tight">
+                LUNACORE<br>
+                PF23 COLLECTION
+              </h2>
+            </div>
+
+            <!-- Bottom Row: Subtitle + View Button -->
+            <div class="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-4 border-t border-white/10">
+              <p id="collection-desc" class="text-xs sm:text-sm text-neutral-300 max-w-md leading-relaxed font-sans">
+                Explore the boundaries of style with our Pre-Fall 2023. It's a world where fashion meets technology, modular utility, and stealth aesthetics.
+              </p>
+              
+              <button onclick="openLookbookModal()" class="px-6 py-3 rounded-full bg-white/10 hover:bg-brand-accent text-white font-mono text-xs uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-brand-accent transition flex items-center gap-2 self-start sm:self-auto">
+                <span>VIEW COLLECTION</span>
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 5. COMMUNITY / INSTAGRAM FEED (Bottom row of 6 photos) -->
+        <!-- Matches the "Follow us on Instagram" gallery in mockup -->
+        <!-- ============================================== -->
+        <section class="px-6 sm:px-10 py-12 border-t border-white/[0.06] bg-[#090a0c]">
+          <div class="text-center mb-8 space-y-1">
+            <h4 class="text-sm font-sans text-neutral-300 font-medium">
+              Follow us on <a href="https://instagram.com" target="_blank" class="text-brand-accent font-semibold hover:underline">Instagram</a>
+            </h4>
+            <div class="text-[11px] font-mono text-neutral-500">@LUNACORE.OFFICIAL // TAG #LUNACOREGEAR TO BE FEATURED</div>
+          </div>
+
+          <!-- 6 Grid Photos of CLOTHES ONLY -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(0)">
+              <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80" alt="Black Techwear Hoodie" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>1.4K</span>
+              </div>
+            </div>
+
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(1)">
+              <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80" alt="Moto Tech Jacket" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>2.8K</span>
+              </div>
+            </div>
+
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(2)">
+              <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80" alt="Winter Puffer Outerwear" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>940</span>
+              </div>
+            </div>
+
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(3)">
+              <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" alt="Denim Technical Jacket" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>3.2K</span>
+              </div>
+            </div>
+
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(4)">
+              <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Minimalist Technical Sweater" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>4.1K</span>
+              </div>
+            </div>
+
+            <div class="group relative h-52 rounded-2xl overflow-hidden cursor-pointer border border-white/10" onclick="showCommunityModal(5)">
+              <img src="https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=600&q=80" alt="Stealth Anorak Jacket" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-xs font-mono">
+                <i data-lucide="instagram" class="w-4 h-4 text-brand-accent"></i>
+                <span>5.7K</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 6. FOOTER (Matching the footer in mockup) -->
+        <!-- ============================================== -->
+        <footer class="px-6 sm:px-12 py-10 border-t border-white/[0.08] bg-[#08090b] text-neutral-400 text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+            
+            <!-- Left Info -->
+            <div class="md:col-span-5 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-brand-accent rounded-sm"></span>
+                <span class="font-bold text-white font-mono text-sm tracking-widest">LUNACORE LABS // 2026</span>
+              </div>
+              <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+                Engineering avant-garde garments, cybernetic waterproof fabrics, and modular tactical gear for the modern urban dweller. Designed in Tokyo & Berlin.
+              </p>
+              <div class="text-[10px] font-mono text-neutral-600">
+                MADE IN JAPAN / SINCE 2018 / 徒尔街头
+              </div>
+            </div>
+
+            <!-- Middle Navigation Links (from reference image) -->
+            <div class="md:col-span-4 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] uppercase self-center">
+              <a href="#" class="hover:text-white transition">SHIPPING</a>
+              <a href="#" class="hover:text-white transition">ABOUT US</a>
+              <a href="#" class="hover:text-white transition">HELP / FAQ</a>
+              <a href="#" class="hover:text-white transition">CONTACT US</a>
+              <a href="#" class="hover:text-white transition">PAYMENT</a>
+              <a href="#" class="hover:text-white transition">BLOG</a>
+            </div>
+
+            <!-- Right Socials (INSTAGRAM, YOUTUBE, TIKTOK, TELEGRAM from reference) -->
+            <div class="md:col-span-3 flex flex-col justify-center md:items-end space-y-3">
+              <div class="text-[11px] font-mono text-neutral-500 uppercase">CHANNELS</div>
+              <div class="flex items-center gap-3 font-mono text-xs text-neutral-300">
+                <a href="#" class="hover:text-brand-accent transition">INSTAGRAM</a>
+                <span>•</span>
+                <a href="#" class="hover:text-brand-accent transition">YOUTUBE</a>
+                <span>•</span>
+                <a href="#" class="hover:text-brand-accent transition">TIKTOK</a>
+                <span>•</span>
+                <a href="#" class="hover:text-brand-accent transition">TELEGRAM</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Copyright Strip -->
+          <div class="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-neutral-600 gap-2">
+            <div>© 2023-2026 LUNACORE INC. ALL RIGHTS RESERVED.</div>
+            <div class="flex items-center gap-4">
+              <a href="#" class="hover:underline">PRIVACY POLICY</a>
+              <a href="#" class="hover:underline">TERMS OF USE</a>
+              <a href="#" class="hover:underline">SECURITY AUDIT</a>
+            </div>
+          </div>
+        </footer>
+
+      </div> <!-- /SITE OUTER CARD -->
+
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- INTERACTIVE DRAWER: SLIDE-OVER SHOPPING CART -->
+  <!-- ============================================== -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+    <!-- Backdrop -->
+    <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+    <!-- Drawer Panel -->
+    <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#111318] border-l border-white/10 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-white/10 flex items-center justify-between bg-[#14171e]">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-accent"></i>
+          <h3 class="font-bold text-white font-display text-lg">YOUR BAG</h3>
+          <span id="drawer-item-count" class="px-2 py-0.5 rounded-full bg-brand-accent/20 text-brand-accent text-xs font-mono font-bold">0</span>
+        </div>
+        <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-white/10 text-neutral-400 hover:text-white transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Body / Item List -->
+      <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Injected dynamically via app.js -->
+        <div class="text-center py-16 text-neutral-500 space-y-3">
+          <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-[1.2] opacity-40"></i>
+          <p class="text-sm">Your bag is currently empty</p>
+          <button onclick="toggleCart(); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-mono">
+            START BROWSING
+          </button>
+        </div>
+      </div>
+
+      <!-- Drawer Footer / Summary -->
+      <div class="p-6 border-t border-white/10 bg-[#14171e] space-y-4">
+        <!-- Promo Code Input -->
+        <div class="flex items-center gap-2">
+          <input 
+            type="text" 
+            id="promo-input" 
+            placeholder="PROMO CODE (USE 'TECH20')" 
+            class="flex-1 bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-brand-accent uppercase"
+          >
+          <button onclick="applyPromo()" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-mono transition">
+            APPLY
+          </button>
+        </div>
+        <div id="promo-status" class="text-[11px] font-mono hidden"></div>
+
+        <!-- Price breakdown -->
+        <div class="space-y-1.5 text-xs font-mono">
+          <div class="flex justify-between text-neutral-400">
+            <span>SUBTOTAL</span>
+            <span id="cart-subtotal" class="text-white font-bold">$0.00</span>
+          </div>
+          <div class="flex justify-between text-neutral-400">
+            <span>DISCOUNT</span>
+            <span id="cart-discount" class="text-emerald-400">-$0.00</span>
+          </div>
+          <div class="flex justify-between text-neutral-400">
+            <span>ESTIMATED TAX & SHIPPING</span>
+            <span class="text-neutral-300">FREE</span>
+          </div>
+          <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/10">
+            <span>TOTAL</span>
+            <span id="cart-total" class="text-brand-accent text-base">$0.00</span>
+          </div>
+        </div>
+
+        <button onclick="openCheckoutModal()" class="w-full py-3.5 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition shadow-lg glow-orange flex items-center justify-center gap-2">
+          <span>PROCEED TO CHECKOUT</span>
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- MODAL: PRODUCT QUICK VIEW & SPECS -->
+  <!-- ============================================== -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-3xl bg-[#13151b] border border-white/15 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+      <button onclick="closeProductModal()" class="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-neutral-300 hover:text-white border border-white/10 flex items-center justify-center transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="h-80 md:h-[480px] bg-black/40 relative overflow-hidden">
+          <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
+          <div class="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-[10px] font-mono text-brand-accent border border-brand-accent/30 font-bold" id="modal-product-tag">
+            VERIFIED SPEC
+          </div>
+        </div>
+
+        <div class="p-6 md:p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider" id="modal-product-category">OUTERWEAR</div>
+            <h3 class="text-2xl font-bold font-display text-white" id="modal-product-name">Product Name</h3>
+            
+            <div class="flex items-center gap-3 font-mono">
+              <span class="text-xl font-bold text-brand-accent" id="modal-product-price">$140</span>
+              <span class="text-sm line-through text-neutral-500" id="modal-product-oldprice">$220</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">IN STOCK</span>
+            </div>
+
+            <p class="text-xs text-neutral-400 leading-relaxed" id="modal-product-desc">
+              High-performance modular construction featuring water-repellent laminated outer layer, Fidlock® magnetic closures, and articulated ergonomic sleeves.
+            </p>
+
+            <!-- Size Selector -->
+            <div class="space-y-2 pt-2">
+              <div class="text-xs font-mono text-neutral-300 flex justify-between">
+                <span>SELECT SIZE</span>
+                <span class="text-brand-accent cursor-pointer hover:underline">SIZE GUIDE</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="size-btn active px-3.5 py-1.5 rounded-lg bg-brand-accent text-white font-mono text-xs font-bold transition">S</button>
+                <button class="size-btn px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 font-mono text-xs transition">M</button>
+                <button class="size-btn px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 font-mono text-xs transition">L</button>
+                <button class="size-btn px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 font-mono text-xs transition">XL</button>
+              </div>
+            </div>
+
+            <!-- Tech Specs -->
+            <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1.5 text-[11px] font-mono text-neutral-400">
+              <div class="flex items-center gap-2 text-white">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-accent"></i>
+                <span>Membrane: 20,000mm Hydrostatic Head</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="pocket" class="w-3.5 h-3.5 text-brand-accent"></i>
+                <span>6 Utility Pockets + Internal Harness</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add to Bag Button in Modal -->
+          <button id="modal-add-to-bag" class="w-full py-3.5 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition shadow-lg flex items-center justify-center gap-2 glow-orange">
+            <span>ADD TO BAG</span>
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- MODAL: CHECKOUT SIMULATOR -->
+  <!-- ============================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="w-full max-w-md bg-[#13151a] border border-white/15 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <h4 class="font-display font-bold text-lg text-white">SECURE CHECKOUT</h4>
+          <div class="text-[11px] font-mono text-neutral-400">ENCRYPTED 256-BIT CONNECTION</div>
+        </div>
+        <button onclick="closeCheckoutModal()" class="p-2 rounded-full hover:bg-white/10 text-neutral-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs font-mono">
+        <div>
+          <label class="block text-neutral-400 mb-1.5">FULL NAME</label>
+          <input type="text" value="Takeshi Kovacs" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
+        </div>
+
+        <div>
+          <label class="block text-neutral-400 mb-1.5">DELIVERY ADDRESS</label>
+          <input type="text" value="Shibuya Ward, Neo Tokyo 150-0002" class="w-full bg-black/40 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-accent">
+        </div>
+
+        <div>
+          <label class="block text-neutral-400 mb-1.5">PAYMENT METHOD</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="py-2 rounded-lg bg-brand-accent text-white font-bold border border-brand-accent">CREDIT CARD</button>
+            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">APPLE PAY</button>
+            <button class="py-2 rounded-lg bg-white/5 text-neutral-400 hover:bg-white/10">CRYPTO</button>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex justify-between font-bold">
+          <span class="text-neutral-300">AMOUNT DUE:</span>
+          <span id="checkout-amount-display" class="text-brand-accent text-sm">$0.00</span>
+        </div>
+      </div>
+
+      <button onclick="completeCheckoutOrder()" class="w-full py-3.5 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition shadow-lg glow-orange flex items-center justify-center gap-2">
+        <span>AUTHORIZE & PAY NOW</span>
+        <i data-lucide="check-circle" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- MODAL: SEARCH -->
+  <!-- ============================================== -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-24 p-4 bg-black/80 backdrop-blur-md">
+    <div class="w-full max-w-xl bg-[#13151b] border border-white/15 rounded-2xl p-5 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+        <i data-lucide="search" class="w-5 h-5 text-brand-accent"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          oninput="handleSearch(this.value)"
+          placeholder="SEARCH ANORAK, KIMONO, BAGS, VESTS..." 
+          class="flex-1 bg-transparent text-white font-mono text-sm focus:outline-none placeholder-neutral-500 uppercase"
+        >
+        <button onclick="closeSearchModal()" class="text-neutral-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div id="search-results" class="max-h-72 overflow-y-auto space-y-2 text-xs font-mono">
+        <div class="text-neutral-500 py-4 text-center">Type keywords to query LUNACORE catalog...</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- TOAST NOTIFICATION -->
+  <!-- ============================================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-[#1c1f28] border border-brand-accent/50 text-white shadow-2xl font-mono text-xs">
+    <div class="w-6 h-6 rounded-full bg-brand-accent flex items-center justify-center text-white">
+      <i data-lucide="check" class="w-3.5 h-3.5"></i>
+    </div>
+    <span id="toast-message">Item added to bag</span>
+  </div>
+
+  <!-- JavaScript application logic -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -2,6 +2,7 @@
  * LUNACORE™ // SS23 E-COMMERCE ENGINE
  * Avant-Garde Streetwear & Cybernetic Techwear
  * Currency: Indian Rupees (INR - ₹)
+ * Primary Assets: Exact Crops from Supplied Reference Design
  */
 
 // Helper for Indian Rupee Formatting
@@ -9,11 +10,11 @@ function formatINR(val) {
   return '₹' + Number(val).toLocaleString('en-IN');
 }
 
-// Master Products Database (CLOTHES ONLY - ALL IN RUPEES ₹)
+// Master Products Database (Directly from Reference Image)
 const PRODUCTS = [
   {
     id: 'anorak-stalker',
-    name: 'ANORAK STALKER JACKET',
+    name: 'ANORAK STALKER',
     category: 'men',
     price: 11999,
     oldPrice: 15499,
@@ -21,13 +22,13 @@ const PRODUCTS = [
     reviewsCount: 142,
     salesCount: '1.2K+ sold',
     isBestSeller: true,
-    image: 'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/prod_anorak@3x.jpg',
     tag: '#1 BESTSELLER',
-    desc: 'Weather-sealed 3-layer anorak with storm hood, integrated breathability vents, and quick-release magnetic Fidlock buckles.'
+    desc: 'Weather-sealed 3-layer storm anorak with articulated storm hood, taped seams, and Fidlock® magnetic buckles.'
   },
   {
     id: 'kimono-liu-kang',
-    name: 'KIMONO LIU KANG MOTO',
+    name: 'KIMONO LIU KANG',
     category: 'men',
     price: 4999,
     oldPrice: 7999,
@@ -35,13 +36,13 @@ const PRODUCTS = [
     reviewsCount: 310,
     salesCount: '2.4K+ sold',
     isBestSeller: true,
-    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/prod_kimono@3x.jpg',
     tag: 'SS23 SALE',
-    desc: 'Japanese Noragi silhouette re-engineered with DWR Cordura canvas and Kanji typography embroidery: 徒尔街头.'
+    desc: 'Japanese Noragi silhouette re-engineered with DWR Cordura canvas and Kanji vertical embroidery: 徒尔街头.'
   },
   {
     id: 'tactical-windbreaker',
-    name: 'TACTICAL WINDBREAKER HOODIE',
+    name: 'STORM WINDBREAKER',
     category: 'men',
     price: 8499,
     oldPrice: 11200,
@@ -49,13 +50,13 @@ const PRODUCTS = [
     reviewsCount: 89,
     salesCount: '800+ sold',
     isBestSeller: false,
-    image: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/prod_windbreaker@3x.jpg',
     tag: 'WATERPROOF',
     desc: 'Ultralight ripstop storm jacket designed for extreme urban downpours and wind gusts up to 80 km/h.'
   },
   {
     id: 'shadow-longsleeve',
-    name: 'SHADOW RUNNER LONG TEE',
+    name: 'SHADOW RUNNER TEE',
     category: 'men',
     price: 3499,
     oldPrice: 4999,
@@ -63,13 +64,13 @@ const PRODUCTS = [
     reviewsCount: 65,
     salesCount: '650+ sold',
     isBestSeller: false,
-    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/prod_shadow@3x.jpg',
     tag: 'MINIMAL',
     desc: 'Ergonomic seamless compression base layer with thumb-loop cuffs and reflective circuit trace details.'
   },
   {
     id: 'tactical-cargo-gear',
-    name: 'MOLLE TACTICAL CARGO PANTS',
+    name: 'MODULAR CARGO APPAREL',
     category: 'accessories',
     price: 5999,
     oldPrice: 7999,
@@ -77,51 +78,51 @@ const PRODUCTS = [
     reviewsCount: 220,
     salesCount: '1.8K+ sold',
     isBestSeller: true,
-    image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/cat_accessories@3x.jpg',
     tag: 'TOP RATED',
-    desc: 'Heavyweight reinforced ripstop trousers with detachable utility holster pockets and ankle cinches.'
+    desc: 'Tactical modular sling pack and cordura utility gear designed for rapid urban transit.'
   },
   {
-    id: 'cyber-crop-femme',
-    name: 'OVERSIZED TAILORED BLAZER',
+    id: 'cyber-femme-jacket',
+    name: 'CYBER STREET RUNNER',
     category: 'women',
     price: 6799,
     oldPrice: 8999,
     rating: 4.9,
     reviewsCount: 94,
     salesCount: '730+ sold',
-    isBestSeller: false,
-    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
+    isBestSeller: true,
+    image: 'assets/cat_women@3x.jpg',
     tag: 'FEMME TECH',
-    desc: 'High-collar structured silhouette with extended articulated thumb sleeves, magnetic zip pulls, and matte finish.'
+    desc: 'High-collar structured avant-garde silhouette with extended articulated thumb sleeves and matte black hardware.'
   },
   {
-    id: 'denim-tactical-jacket',
-    name: 'DENIM MODULAR JACKET',
+    id: 'men-duo-streetwear',
+    name: 'STEALTH DUAL OVERSIZED HOODIE',
     category: 'men',
     price: 7499,
     oldPrice: 9800,
     rating: 4.8,
     reviewsCount: 115,
     salesCount: '920+ sold',
-    isBestSeller: true,
-    image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80',
+    isBestSeller: false,
+    image: 'assets/cat_men@3x.jpg',
     tag: 'BESTSELLER',
-    desc: 'Raw dark selvedge modular jacket with articulated sleeves and Teflon water-resistant finish.'
+    desc: 'Raw dark heavyweight streetwear hoodie with articulated sleeve paneling and weather-repellent finish.'
   },
   {
-    id: 'femme-streetwear-coat',
-    name: 'STEALTH RUNNER STREET COAT',
-    category: 'women',
-    price: 9999,
-    oldPrice: 13500,
+    id: 'kimono-hero-edition',
+    name: 'KIMONO LIU KANG [STEALTH DROP]',
+    category: 'men',
+    price: 4999,
+    oldPrice: 7999,
     rating: 5.0,
     reviewsCount: 178,
     salesCount: '1.1K+ sold',
     isBestSeller: true,
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/hero_model@3x.jpg',
     tag: 'TRENDING',
-    desc: 'Avant-garde street coat with asymmetric zipper closure, storm flap, and breathable membrane lining.'
+    desc: 'Limited studio drop worn by lead model in SS23 lookbook. Built with Japanese high-density tech weave.'
   }
 ];
 
@@ -129,107 +130,99 @@ const PRODUCTS = [
 const OFFER_PRODUCTS = [
   {
     id: 'flash-deal-1',
-    name: 'STORM SHELL PARKA [PROTOTYPE]',
+    name: 'STORM WINDBREAKER [PROTOTYPE]',
     category: 'men',
-    price: 8999,
-    oldPrice: 17999,
-    discountPercent: '50% OFF',
-    image: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=800&q=80',
+    price: 5999,
+    oldPrice: 11200,
+    discountPercent: '46% OFF',
+    image: 'assets/prod_windbreaker@3x.jpg',
     tag: 'FLASH DEAL',
-    desc: 'Rare experimental membrane parka with internal thermal harness and storm cuffs.'
+    desc: 'Laboratory prototype run with laser-cut ventilation and stormproof collar.'
   },
   {
     id: 'flash-deal-2',
-    name: 'CYBER-FLEECE MODULAR HOODIE',
+    name: 'ANORAK STALKER [SAMPLE]',
     category: 'men',
-    price: 3999,
-    oldPrice: 6999,
-    discountPercent: '43% OFF',
-    image: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80',
+    price: 7999,
+    oldPrice: 15499,
+    discountPercent: '48% OFF',
+    image: 'assets/prod_anorak@3x.jpg',
     tag: 'FLASH DEAL',
-    desc: 'Dual-bonded technical fleece with matte black hardware and acoustic-damping hood lining.'
+    desc: 'Limited runway sample in matte charcoal with quick-release magnetic Fidlock buckles.'
   },
   {
     id: 'flash-deal-3',
-    name: 'MONOLITH HEAVYWEIGHT SWEATER',
-    category: 'women',
-    price: 3299,
-    oldPrice: 5999,
-    discountPercent: '45% OFF',
-    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
+    name: 'KIMONO NORAGI [EARLY ACCESS]',
+    category: 'men',
+    price: 3499,
+    oldPrice: 7999,
+    discountPercent: '56% OFF',
+    image: 'assets/prod_kimono@3x.jpg',
     tag: 'FLASH DEAL',
-    desc: 'Seamless ribbed architectural knitwear offering insulation down to -5°C.'
+    desc: 'Early access batch with raw selvedge canvas and kanji embroidery.'
   }
 ];
 
-// Verified Customer Testimonials
+// Customer Testimonials (Authentic Fashion Tone)
 const TESTIMONIALS = [
   {
     id: 1,
-    name: 'Aarav Malhotra',
+    name: 'Aarav M.',
     location: 'Mumbai, India',
-    role: 'Cyberpunk Fashion Stylist & Photographer',
+    role: 'Editorial Stylist',
     rating: 5,
-    date: 'Verified Buyer • 2 days ago',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
-    productBought: 'KIMONO LIU KANG MOTO (₹4,999)',
-    reviewText: 'The Cordura fabric and stitching on this Kimono are absolute perfection. In Mumbai monsoon, the waterproofing literally lets droplets slide right off. Looks unreal on camera too!',
-    stats: '100% Waterproof Spec Verified'
+    productBought: 'KIMONO LIU KANG (₹4,999)',
+    reviewText: 'The DWR Cordura finish and lapel embroidery are extraordinary. In monsoon rain, water literally beads right off.',
+    stats: 'Monsoon Waterproof Tested'
   },
   {
     id: 2,
-    name: 'Rhea Sengupta',
+    name: 'Rhea S.',
     location: 'Bengaluru, India',
-    role: 'Creative Director at Studio Null',
+    role: 'Creative Director',
     rating: 5,
-    date: 'Verified Buyer • 1 week ago',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80',
-    productBought: 'STEALTH RUNNER STREET COAT (₹9,999)',
-    reviewText: 'Hands down the most comfortable and futuristic coat I own. The Fidlock magnetic closures snap with such a satisfying click. Packaging was ultra-premium with vacuum-sealed stealth bag.',
-    stats: 'Fidlock® Hardware Authenticated'
+    productBought: 'ANORAK STALKER (₹11,999)',
+    reviewText: 'Fidlock magnetic closures click with supreme precision. Silhouette feels genuine Tokyo Harajuku rather than fast fashion.',
+    stats: 'Fidlock® Authenticated'
   },
   {
     id: 3,
-    name: 'Vikram Joshi',
+    name: 'Vikram J.',
     location: 'Delhi NCR, India',
-    role: 'Urban Architect & Tech Enthusiast',
+    role: 'Architect',
     rating: 5,
-    date: 'Verified Buyer • 2 weeks ago',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-    productBought: 'MOLLE TACTICAL CARGO (₹5,999)',
-    reviewText: 'Deep utility pockets, completely rip-resistant, and the silhouette has that authentic Tokyo Harajuku stealth fit. Worth every single Rupee.',
-    stats: 'Cordura® Tear-Test Passed'
+    productBought: 'STORM WINDBREAKER (₹8,499)',
+    reviewText: 'Clean studio grey palette, zero gaudy logos, high technical utility. Exactly what high-end techwear should be.',
+    stats: 'Ripstop Fabric Verified'
   },
   {
     id: 4,
-    name: 'Zoya Khan',
+    name: 'Zoya K.',
     location: 'Hyderabad, India',
-    role: 'Digital Concept Designer',
+    role: 'Fashion Designer',
     rating: 5,
-    date: 'Verified Buyer • 3 weeks ago',
-    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80',
-    productBought: 'OVERSIZED TAILORED BLAZER (₹6,799)',
-    reviewText: 'The cut is so sharp! Wore it to a cyberpunk art gallery opening and received at least a dozen compliments. Fast delivery across India too.',
-    stats: 'Fast Dispatch: 24 Hours'
+    productBought: 'CYBER STREET RUNNER (₹6,799)',
+    reviewText: 'The drape and articulated sleeves are sharp and flattering. Fast 24-hour dispatch to Hyderabad.',
+    stats: 'Fast Dispatch Verified'
   }
 ];
 
-// Lookbook Collections
+// Lookbook Collections (Using Exact Reference Banners)
 const COLLECTIONS = [
   {
     title: 'LUNACORE<br>PF23 COLLECTION',
-    desc: 'Explore the boundaries of style with our Pre-Fall 2023. It\'s a world where fashion meets technology, modular utility, and stealth aesthetics.',
-    image: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=1600&q=80'
+    desc: 'Explore the boundaries of style with our Pre-Fall 2023. It\'s a world where fashion meets technology.',
+    image: 'assets/coll_pf23@3x.jpg'
   },
   {
-    title: 'NEO-SHIBUYA<br>WINTER SHELL 24',
-    desc: 'Sub-zero thermal armor inspired by the nocturnal neon canyons of Neo-Tokyo. Hydrophobic coatings meet ergonomic articulation.',
-    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1600&q=80'
+    title: 'NEO-SHIBUYA<br>STREET SERIES',
+    desc: 'Atmospheric urban silhouettes engineered for nocturnal transit across megacity transit lines.',
+    image: 'assets/cat_men@3x.jpg'
   },
   {
-    title: 'MONOLITH GEAR<br>MODULAR APPAREL',
-    desc: 'Engineered outerwear and technical garments crafted for seamless transit across megacity transit lines.',
-    image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=1600&q=80'
+    title: 'AVANT-GARDE<br>FEMME TECH 23',
+    desc: 'Cybernetic tailoring meets lightweight weather-sealed membranes in a new feminine form factor.',
+    image: 'assets/cat_women@3x.jpg'
   }
 ];
 
@@ -241,7 +234,7 @@ let isMobilePreview = false;
 
 // Web Audio API for tech feedback
 let audioCtx = null;
-function playTechBeep(frequency = 800, duration = 0.05, type = 'sine') {
+function playTechBeep(frequency = 800, duration = 0.04, type = 'sine') {
   try {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -250,7 +243,7 @@ function playTechBeep(frequency = 800, duration = 0.05, type = 'sine') {
     const gain = audioCtx.createGain();
     osc.type = type;
     osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
@@ -263,7 +256,6 @@ function playTechBeep(frequency = 800, duration = 0.05, type = 'sine') {
 
 // Initializer
 document.addEventListener('DOMContentLoaded', () => {
-  renderProducts('all');
   renderBestSellers();
   renderOffers();
   renderTestimonials();
@@ -272,74 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 });
 
-// Render Main Catalog Products
-function renderProducts(filter = 'all') {
-  const container = document.getElementById('product-grid');
-  if (!container) return;
-
-  const filtered = filter === 'all' 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === filter);
-
-  container.innerHTML = filtered.map(item => `
-    <div class="group relative rounded-2xl bg-brand-card border border-white/5 overflow-hidden flex flex-col justify-between glass-card-hover">
-      
-      <!-- Image Canvas -->
-      <div class="relative h-96 w-full overflow-hidden bg-neutral-900 cursor-pointer" onclick="openProductModal('${item.id}')">
-        <img 
-          src="${item.image}" 
-          alt="${item.name}" 
-          class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
-          loading="lazy"
-        />
-        
-        <!-- Top Tag & Star Rating -->
-        <div class="absolute top-3 left-3 flex items-center gap-1.5">
-          <span class="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-neutral-300 font-semibold uppercase">
-            ${item.tag}
-          </span>
-          <span class="px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md border border-amber-500/30 text-[10px] font-mono text-amber-400 font-bold flex items-center gap-1">
-            <i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>
-            <span>${item.rating}</span>
-          </span>
-        </div>
-
-        <!-- Quick View Icon Button -->
-        <button 
-          onclick="event.stopPropagation(); openProductModal('${item.id}')"
-          class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-accent hover:border-brand-accent"
-          title="Quick View"
-        >
-          <i data-lucide="expand" class="w-4 h-4"></i>
-        </button>
-
-        <!-- Floating Action Pill (Rupees format) -->
-        <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/80 backdrop-blur-md border border-white/15 flex items-center justify-between gap-2 shadow-xl transform translate-y-1 group-hover:translate-y-0 transition-transform">
-          <div class="overflow-hidden">
-            <div class="text-[11px] font-bold text-white truncate">${item.name}</div>
-            <div class="flex items-center gap-1.5 text-xs font-mono">
-              <span class="text-white font-bold">${formatINR(item.price)}</span>
-              <span class="line-through text-neutral-500 text-[10px]">${formatINR(item.oldPrice)}</span>
-            </div>
-          </div>
-
-          <button 
-            onclick="event.stopPropagation(); addToBagById('${item.id}')"
-            class="px-3.5 py-1.5 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-[11px] uppercase tracking-wider transition whitespace-nowrap glow-orange flex items-center gap-1"
-          >
-            <span>ADD</span>
-            <i data-lucide="plus" class="w-3 h-3"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  `).join('');
-
-  lucide.createIcons();
-}
-
-// Render Best Selling Page / Section
+// Render Best Selling Page Section
 function renderBestSellers() {
   const container = document.getElementById('bestsellers-grid');
   if (!container) return;
@@ -347,159 +272,116 @@ function renderBestSellers() {
   const bestSellers = PRODUCTS.filter(p => p.isBestSeller);
 
   container.innerHTML = bestSellers.map(item => `
-    <div class="group relative rounded-2xl bg-gradient-to-b from-brand-card to-[#0e1015] border border-brand-accent/20 overflow-hidden flex flex-col justify-between glass-card-hover p-4 space-y-4">
-      
-      <!-- Top Badges -->
-      <div class="flex items-center justify-between">
-        <span class="px-2.5 py-0.5 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-[10px] font-mono text-brand-accent font-bold">
-          ${item.tag}
-        </span>
-        <span class="text-[10px] font-mono text-neutral-400">
-          ${item.salesCount}
-        </span>
-      </div>
-
-      <!-- Image -->
-      <div class="relative h-64 rounded-xl overflow-hidden bg-black/40 cursor-pointer" onclick="openProductModal('${item.id}')">
+    <div class="group relative rounded-2xl bg-brand-surfaceLight overflow-hidden editorial-card border border-white/[0.04] p-3 space-y-3 flex flex-col justify-between">
+      <div class="relative h-64 rounded-xl overflow-hidden bg-brand-studioGrey cursor-pointer" onclick="openProductModal('${item.id}')">
         <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-        
-        <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-sm text-[10px] font-mono text-amber-400 flex items-center gap-1">
-          <i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>
-          <span>${item.rating} (${item.reviewsCount} reviews)</span>
+        <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-mono text-white font-bold">
+          ${item.tag}
         </div>
       </div>
 
-      <!-- Info & Price in Rupees -->
       <div class="space-y-1">
-        <h4 class="font-bold text-white text-sm truncate">${item.name}</h4>
-        <p class="text-neutral-400 text-xs line-clamp-2 leading-relaxed">${item.desc}</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="font-bold text-white text-xs font-display">${item.name}</span>
+          <span class="text-neutral-400 text-[10px]">${item.salesCount}</span>
+        </div>
+        <p class="text-neutral-400 text-[11px] line-clamp-1 leading-relaxed">${item.desc}</p>
       </div>
 
       <div class="flex items-center justify-between pt-2 border-t border-white/5">
         <div class="font-mono">
-          <div class="text-brand-accent font-bold text-base">${formatINR(item.price)}</div>
+          <div class="text-white font-bold text-xs">${formatINR(item.price)}</div>
           <div class="line-through text-neutral-500 text-[10px]">${formatINR(item.oldPrice)}</div>
         </div>
-
         <button 
           onclick="addToBagById('${item.id}')"
-          class="px-4 py-2 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition glow-orange flex items-center gap-1.5"
+          class="px-3 py-1.5 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] uppercase tracking-wider transition"
         >
-          <span>BAG</span>
-          <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+          ADD
         </button>
       </div>
-
     </div>
   `).join('');
 
   lucide.createIcons();
 }
 
-// Render Offer Page / Section (Flash Deals & Promo Banners)
+// Render Offer Section
 function renderOffers() {
   const container = document.getElementById('offers-grid');
   if (!container) return;
 
   container.innerHTML = OFFER_PRODUCTS.map(item => `
-    <div class="relative rounded-2xl bg-gradient-to-br from-[#1b1716] via-[#14161c] to-[#0f1117] border border-brand-accent/30 p-5 overflow-hidden flex flex-col justify-between group hover:border-brand-accent transition shadow-xl">
-      
-      <!-- Discount Flare Badge -->
-      <div class="absolute -right-8 top-5 bg-brand-accent text-white font-bold font-mono text-[10px] px-8 py-1 rotate-45 shadow-md">
+    <div class="relative rounded-2xl bg-brand-surface border border-white/10 p-4 overflow-hidden flex flex-col justify-between group hover:border-brand-accent/50 transition">
+      <div class="absolute -right-7 top-4 bg-brand-accent text-white font-bold font-mono text-[9px] px-7 py-0.5 rotate-45 shadow">
         ${item.discountPercent}
       </div>
 
       <div class="space-y-3">
-        <div class="relative h-56 rounded-xl overflow-hidden bg-black/50">
+        <div class="relative h-48 rounded-xl overflow-hidden bg-brand-studioGrey">
           <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[10px] font-mono text-brand-accent font-bold">
-            ${item.tag}
-          </div>
         </div>
-
         <div>
-          <h4 class="font-bold text-white text-sm">${item.name}</h4>
-          <p class="text-neutral-400 text-xs mt-1 leading-relaxed">${item.desc}</p>
+          <h4 class="font-bold text-white text-xs font-display">${item.name}</h4>
+          <p class="text-neutral-400 text-[11px] mt-1">${item.desc}</p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between pt-4 mt-4 border-t border-white/10">
-        <div>
-          <div class="text-lg font-bold text-emerald-400 font-mono">${formatINR(item.price)}</div>
-          <div class="line-through text-neutral-500 text-xs font-mono">${formatINR(item.oldPrice)}</div>
+      <div class="flex items-center justify-between pt-3 mt-3 border-t border-white/5">
+        <div class="font-mono">
+          <div class="text-white font-bold text-xs">${formatINR(item.price)}</div>
+          <div class="line-through text-neutral-500 text-[10px]">${formatINR(item.oldPrice)}</div>
         </div>
-
         <button 
           onclick="addToBag({id: '${item.id}', name: '${item.name}', price: ${item.price}, image: '${item.image}'})"
-          class="px-4 py-2 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition glow-orange flex items-center gap-1.5"
+          class="px-3 py-1.5 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] uppercase tracking-wider transition"
         >
-          <span>CLAIM DEAL</span>
-          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+          CLAIM DEAL
         </button>
       </div>
-
     </div>
   `).join('');
 
   lucide.createIcons();
 }
 
-// Render Testimonials Section / Page
+// Render Testimonials
 function renderTestimonials() {
   const container = document.getElementById('testimonials-grid');
   if (!container) return;
 
   container.innerHTML = TESTIMONIALS.map(t => `
-    <div class="p-6 rounded-2xl bg-brand-card/90 border border-white/5 hover:border-brand-accent/30 transition duration-300 space-y-4 flex flex-col justify-between shadow-lg">
-      
-      <!-- Top Reviewer Row -->
-      <div class="flex items-start justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <img src="${t.avatar}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover border border-brand-accent/40">
-          <div>
-            <div class="text-sm font-bold text-white">${t.name}</div>
-            <div class="text-[11px] font-mono text-neutral-400">${t.location}</div>
-            <div class="text-[10px] font-mono text-brand-accent">${t.role}</div>
-          </div>
+    <div class="p-5 rounded-2xl bg-brand-surfaceLight border border-white/[0.04] space-y-3 flex flex-col justify-between">
+      <div class="space-y-1">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-white font-display">${t.name}</span>
+          <span class="text-[10px] font-mono text-brand-accent">★★★★★</span>
         </div>
-        
-        <!-- Stars -->
-        <div class="flex items-center gap-0.5 text-amber-400">
-          ${Array(t.rating).fill('<i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>').join('')}
-        </div>
+        <div class="text-[10px] font-mono text-neutral-500">${t.location} • ${t.role}</div>
       </div>
 
-      <!-- Quote -->
-      <blockquote class="text-xs text-neutral-300 leading-relaxed italic">
+      <blockquote class="text-[11px] text-neutral-300 leading-relaxed font-sans italic">
         "${t.reviewText}"
       </blockquote>
 
-      <!-- Verified Product Badge & Spec -->
-      <div class="pt-3 border-t border-white/5 space-y-1 font-mono text-[11px]">
-        <div class="flex items-center justify-between text-neutral-400">
-          <span class="text-white font-medium truncate max-w-[200px]">${t.productBought}</span>
-          <span class="text-emerald-400 flex items-center gap-1">
-            <i data-lucide="check-circle-2" class="w-3 h-3"></i>
-            <span>Verified</span>
-          </span>
-        </div>
-        <div class="text-[10px] text-neutral-500">${t.stats}</div>
+      <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-neutral-400">
+        <span class="truncate max-w-[150px] text-neutral-300">${t.productBought}</span>
+        <span class="text-emerald-400">Verified</span>
       </div>
-
     </div>
   `).join('');
 
   lucide.createIcons();
 }
 
-// Live Countdown Timer for Offers Page
+// Live Countdown Timer
 function initOfferCountdown() {
   const hoursElem = document.getElementById('offer-timer-hours');
   const minsElem = document.getElementById('offer-timer-mins');
   const secsElem = document.getElementById('offer-timer-secs');
   if (!hoursElem) return;
 
-  let totalSeconds = 14 * 3600 + 32 * 60 + 45; // 14 hours 32 mins 45s
+  let totalSeconds = 14 * 3600 + 32 * 60 + 45;
 
   setInterval(() => {
     if (totalSeconds > 0) totalSeconds--;
@@ -516,20 +398,7 @@ function initOfferCountdown() {
 // Category Filter Handling
 function filterCategory(cat) {
   playTechBeep(600, 0.04);
-  document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-    btn.classList.remove('active', 'bg-white/10', 'text-white');
-    btn.classList.add('text-neutral-400');
-  });
-
-  const activeBtn = Array.from(document.querySelectorAll('.cat-filter-btn'))
-    .find(b => b.textContent.trim().toLowerCase() === (cat === 'accessories' ? 'gear' : cat));
-
-  if (activeBtn) {
-    activeBtn.classList.add('active', 'bg-white/10', 'text-white');
-    activeBtn.classList.remove('text-neutral-400');
-  }
-
-  renderProducts(cat);
+  document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Add To Bag Functions
@@ -539,7 +408,7 @@ function addToBagById(id) {
 }
 
 function addToBag(product) {
-  playTechBeep(1000, 0.08);
+  playTechBeep(900, 0.06);
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     existing.quantity += 1;
@@ -555,7 +424,7 @@ function addToBag(product) {
   
   localStorage.setItem('lunacore_cart_inr', JSON.stringify(cart));
   updateCartUI();
-  showToast(`ADDED: ${product.name} (${formatINR(product.price)})`);
+  showToast(`ADDED TO BAG: ${product.name}`);
 }
 
 function updateCartQuantity(id, change) {
@@ -586,7 +455,6 @@ function updateCartUI() {
   const discountAmount = subtotal * activeDiscount;
   const finalTotal = subtotal - discountAmount;
 
-  // Header badges
   const headerCount = document.getElementById('header-cart-count');
   const topCartBadge = document.getElementById('top-cart-badge');
   const drawerCount = document.getElementById('drawer-item-count');
@@ -595,7 +463,6 @@ function updateCartUI() {
   if (topCartBadge) topCartBadge.textContent = totalCount;
   if (drawerCount) drawerCount.textContent = totalCount;
 
-  // Price labels in INR ₹
   const subtotalElem = document.getElementById('cart-subtotal');
   const discountElem = document.getElementById('cart-discount');
   const totalElem = document.getElementById('cart-total');
@@ -606,43 +473,41 @@ function updateCartUI() {
   if (totalElem) totalElem.textContent = formatINR(finalTotal);
   if (checkoutDisplay) checkoutDisplay.textContent = formatINR(finalTotal);
 
-  // Cart Drawer Items Container
   const container = document.getElementById('cart-items-container');
   if (!container) return;
 
   if (cart.length === 0) {
     container.innerHTML = `
-      <div class="text-center py-16 text-neutral-500 space-y-3">
-        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-[1.2] opacity-40"></i>
-        <p class="text-sm">Your bag is currently empty</p>
-        <button onclick="toggleCart(); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-mono">
-          START BROWSING
+      <div class="text-center py-16 text-neutral-500 space-y-3 font-mono text-xs">
+        <p>YOUR BAG IS CURRENTLY EMPTY</p>
+        <button onclick="toggleCart(); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="px-4 py-1.5 rounded-full bg-white/10 text-white text-[11px]">
+          EXPLORE CATALOG
         </button>
       </div>
     `;
   } else {
     container.innerHTML = cart.map(item => `
-      <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/[0.03] border border-white/5">
-        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover">
+      <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/[0.02] border border-white/5 font-mono text-xs">
+        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover bg-neutral-800">
         
         <div class="flex-1 min-w-0">
-          <div class="text-xs font-bold text-white truncate">${item.name}</div>
-          <div class="text-xs font-mono text-brand-accent font-semibold mt-0.5">${formatINR(item.price)}</div>
+          <div class="text-xs font-bold text-white truncate font-display">${item.name}</div>
+          <div class="text-[11px] text-brand-accent font-semibold">${formatINR(item.price)}</div>
           
-          <div class="flex items-center gap-3 mt-2">
-            <div class="flex items-center bg-black/50 border border-white/10 rounded-lg overflow-hidden text-xs font-mono">
-              <button onclick="updateCartQuantity('${item.id}', -1)" class="px-2 py-0.5 hover:bg-white/10 text-neutral-300">-</button>
-              <span class="px-2 py-0.5 text-white font-bold">${item.quantity}</span>
-              <button onclick="updateCartQuantity('${item.id}', 1)" class="px-2 py-0.5 hover:bg-white/10 text-neutral-300">+</button>
+          <div class="flex items-center gap-3 mt-1.5">
+            <div class="flex items-center bg-black/40 border border-white/10 rounded-md overflow-hidden text-[11px]">
+              <button onclick="updateCartQuantity('${item.id}', -1)" class="px-2 py-0.5 hover:bg-white/10">-</button>
+              <span class="px-2 py-0.5 text-white">${item.quantity}</span>
+              <button onclick="updateCartQuantity('${item.id}', 1)" class="px-2 py-0.5 hover:bg-white/10">+</button>
             </div>
             
-            <button onclick="removeCartItem('${item.id}')" class="text-neutral-500 hover:text-red-400 text-[11px] font-mono transition">
-              Remove
+            <button onclick="removeCartItem('${item.id}')" class="text-neutral-500 hover:text-red-400 text-[10px]">
+              REMOVE
             </button>
           </div>
         </div>
 
-        <div class="text-xs font-mono font-bold text-white">
+        <div class="text-xs font-bold text-white">
           ${formatINR(item.price * item.quantity)}
         </div>
       </div>
@@ -652,9 +517,8 @@ function updateCartUI() {
   lucide.createIcons();
 }
 
-// Cart Drawer Visibility
 function toggleCart() {
-  playTechBeep(850, 0.05);
+  playTechBeep(850, 0.04);
   const drawer = document.getElementById('cart-drawer');
   const panel = document.getElementById('cart-panel');
   const backdrop = document.getElementById('cart-backdrop');
@@ -674,7 +538,6 @@ function toggleCart() {
   }
 }
 
-// Apply Promo Code
 function applyPromo() {
   const input = document.getElementById('promo-input');
   const status = document.getElementById('promo-status');
@@ -684,21 +547,16 @@ function applyPromo() {
   if (code === 'TECH20') {
     activeDiscount = 0.20;
     status.className = 'text-[11px] font-mono text-emerald-400 block';
-    status.textContent = '✓ 20% DISCOUNT CODE APPLIED!';
-    playTechBeep(1200, 0.1);
-  } else if (code === 'DIWALI50' || code === 'FESTIVE50') {
-    activeDiscount = 0.50;
-    status.className = 'text-[11px] font-mono text-emerald-400 block';
-    status.textContent = '✓ 50% MEGA FLASH CODE APPLIED!';
-    playTechBeep(1200, 0.1);
+    status.textContent = '✓ 20% DISCOUNT APPLIED';
+    playTechBeep(1100, 0.08);
   } else if (code === '') {
     activeDiscount = 0;
     status.className = 'text-[11px] font-mono text-neutral-500 block';
     status.textContent = 'Code cleared';
   } else {
     status.className = 'text-[11px] font-mono text-red-400 block';
-    status.textContent = '✗ INVALID CODE. TRY: TECH20 OR FESTIVE50';
-    playTechBeep(300, 0.15, 'sawtooth');
+    status.textContent = '✗ INVALID CODE. USE: TECH20';
+    playTechBeep(300, 0.12, 'sawtooth');
   }
   updateCartUI();
 }
@@ -712,25 +570,21 @@ function copyCoupon(code) {
       applyPromo();
     }
   }).catch(() => {
-    showToast(`USE CODE: ${code}`);
+    showToast(`CODE: ${code}`);
   });
 }
 
-// Product Quick View Modal
-let currentModalProductId = null;
 function openProductModal(id) {
-  playTechBeep(900, 0.05);
+  playTechBeep(880, 0.04);
   const p = PRODUCTS.find(item => item.id === id) || OFFER_PRODUCTS.find(item => item.id === id);
   if (!p) return;
 
-  currentModalProductId = id;
   document.getElementById('modal-product-img').src = p.image;
   document.getElementById('modal-product-name').textContent = p.name;
   document.getElementById('modal-product-price').textContent = formatINR(p.price);
   document.getElementById('modal-product-oldprice').textContent = formatINR(p.oldPrice);
   document.getElementById('modal-product-desc').textContent = p.desc;
-  document.getElementById('modal-product-category').textContent = p.category.toUpperCase() + ' // TECH SPEC';
-  document.getElementById('modal-product-tag').textContent = p.tag;
+  document.getElementById('modal-product-category').textContent = p.category.toUpperCase() + ' // SS23';
 
   document.getElementById('modal-add-to-bag').onclick = () => {
     addToBag(p);
@@ -744,7 +598,6 @@ function closeProductModal() {
   document.getElementById('product-modal').classList.add('hidden');
 }
 
-// Size Selection in Modal
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('size-btn')) {
     document.querySelectorAll('.size-btn').forEach(btn => {
@@ -757,13 +610,12 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Checkout Modal
 function openCheckoutModal() {
   if (cart.length === 0) {
-    showToast("Your cart is empty. Add items first!");
+    showToast("Your bag is empty. Add garments first.");
     return;
   }
-  playTechBeep(950, 0.05);
+  playTechBeep(900, 0.04);
   toggleCart();
   document.getElementById('checkout-modal').classList.remove('hidden');
 }
@@ -773,17 +625,16 @@ function closeCheckoutModal() {
 }
 
 function completeCheckoutOrder() {
-  playTechBeep(1200, 0.2);
+  playTechBeep(1200, 0.15);
   closeCheckoutModal();
   cart = [];
   localStorage.removeItem('lunacore_cart_inr');
   updateCartUI();
-  showToast("ORDER CONFIRMED! INVOICE #LC-IN-" + Math.floor(100000 + Math.random() * 900000));
+  showToast("DISPATCH CONFIRMED — ORDER #LC-IN-" + Math.floor(100000 + Math.random() * 900000));
 }
 
-// Search Modal
 function openSearchModal() {
-  playTechBeep(800, 0.05);
+  playTechBeep(780, 0.04);
   const modal = document.getElementById('search-modal');
   modal.classList.remove('hidden');
   const input = document.getElementById('search-input');
@@ -801,7 +652,7 @@ function handleSearch(query) {
   const clean = query.trim().toLowerCase();
 
   if (!clean) {
-    resultsContainer.innerHTML = '<div class="text-neutral-500 py-4 text-center">Type keywords to query LUNACORE catalog...</div>';
+    resultsContainer.innerHTML = '<div class="text-neutral-500 py-3 text-center">Type keywords to query catalog...</div>';
     return;
   }
 
@@ -813,25 +664,24 @@ function handleSearch(query) {
   );
 
   if (matches.length === 0) {
-    resultsContainer.innerHTML = '<div class="text-neutral-500 py-4 text-center">No stealth gear matches your inquiry.</div>';
+    resultsContainer.innerHTML = '<div class="text-neutral-500 py-3 text-center">No garments match inquiry.</div>';
     return;
   }
 
   resultsContainer.innerHTML = matches.map(p => `
-    <div onclick="closeSearchModal(); openProductModal('${p.id}')" class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] cursor-pointer transition">
+    <div onclick="closeSearchModal(); openProductModal('${p.id}')" class="flex items-center justify-between p-2 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] cursor-pointer transition">
       <div class="flex items-center gap-3">
-        <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover">
+        <img src="${p.image}" class="w-9 h-9 rounded-lg object-cover bg-neutral-800">
         <div>
-          <div class="text-white font-bold">${p.name}</div>
+          <div class="text-white font-bold text-xs font-display">${p.name}</div>
           <div class="text-[10px] text-neutral-400">${p.category.toUpperCase()}</div>
         </div>
       </div>
-      <div class="text-brand-accent font-bold">${formatINR(p.price)}</div>
+      <div class="text-white font-bold text-xs font-mono">${formatINR(p.price)}</div>
     </div>
   `).join('');
 }
 
-// Lookbook Collection Carousel
 function nextCollection() {
   currentCollectionIndex = (currentCollectionIndex + 1) % COLLECTIONS.length;
   updateCollectionUI();
@@ -862,29 +712,26 @@ function updateCollectionUI() {
 
   if (indicators) {
     indicators.innerHTML = COLLECTIONS.map((_, idx) => `
-      <span class="${idx === currentCollectionIndex ? 'w-6 bg-brand-accent' : 'w-2 bg-white/30'} h-1 rounded-full transition-all"></span>
+      <span class="${idx === currentCollectionIndex ? 'w-5 bg-brand-accent' : 'w-1.5 bg-white/40'} h-1 rounded-full transition-all"></span>
     `).join('');
   }
 }
 
 function openLookbookModal() {
-  showToast("EXPLORING LOOKBOOK VOLUME // " + (currentCollectionIndex + 1));
+  showToast("OPENING LOOKBOOK // VOLUME 04");
   document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Instagram Community Modal Preview
 function showCommunityModal(index) {
   playTechBeep(700, 0.04);
-  showToast("COMMUNITY POST // @lunacore.gear #" + (index + 1));
+  showToast("INSTAGRAM POST // @lunacore.official #" + (index + 1));
 }
 
-// Auth Modal simulation
 function openAuthModal() {
-  playTechBeep(900, 0.05);
-  showToast("AUTHENTICATION PORTAL INITIALIZED");
+  playTechBeep(850, 0.04);
+  showToast("MEMBER PORTAL INITIALIZED");
 }
 
-// Toast notification helper
 let toastTimeout = null;
 function showToast(msg) {
   const toast = document.getElementById('toast');
@@ -899,23 +746,23 @@ function showToast(msg) {
   toastTimeout = setTimeout(() => {
     toast.classList.remove('translate-y-0', 'opacity-100');
     toast.classList.add('translate-y-20', 'opacity-0');
-  }, 2800);
+  }, 2600);
 }
 
-// Responsive Device View Simulator
+// Simulated Device Preview (from Reference Image top-right)
 function toggleDeviceView() {
-  playTechBeep(1100, 0.06);
+  playTechBeep(1000, 0.05);
   isMobilePreview = !isMobilePreview;
-  const frame = document.getElementById('main-frame');
+  const viewport = document.getElementById('main-viewport');
   const label = document.getElementById('view-mode-label');
 
   if (isMobilePreview) {
-    frame.classList.add('mobile-frame-wrapper');
-    label.textContent = "Mobile Frame";
-    showToast("SIMULATING MOBILE APP PREVIEW");
+    viewport.classList.add('simulated-mobile-frame');
+    label.textContent = "Mobile Frame Active";
+    showToast("SWITCHED TO MOBILE FRAME PREVIEW");
   } else {
-    frame.classList.remove('mobile-frame-wrapper');
-    label.textContent = "Desktop View";
-    showToast("SWITCHED TO FULL DESKTOP VIEW");
+    viewport.classList.remove('simulated-mobile-frame');
+    label.textContent = "Desktop / Mobile";
+    showToast("FULL DESKTOP VIEW ACTIVE");
   }
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUNACORE™ — SS23 Avant-Garde Techwear</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MAISON AURELIA — Timeless Eveningwear & Haute Couture</title>
 
-  <!-- High-Fashion Editorial Typography: Space Grotesk + Plus Jakarta Sans + Noto Sans SC -->
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,35 +16,35 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- GSAP & ScrollTrigger from cdnjs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brand: {
-              canvas: '#0f1013',      /* Outer viewport deep matte graphite */
-              surface: '#15171b',     /* Main card surface from reference */
-              surfaceLight: '#1d1f25',
-              surfaceMuted: '#242730',
-              border: 'rgba(255, 255, 255, 0.08)',
-              borderSubtle: 'rgba(255, 255, 255, 0.04)',
-              pillBg: 'rgba(21, 23, 27, 0.92)',
-              accent: '#ff5424',      /* Reference signature orange-coral */
-              accentHover: '#e84517',
-              accentMuted: 'rgba(255, 84, 36, 0.15)',
-              metallic: '#c5c9d1',
-              studioGrey: '#e3e5e8'   /* Reference studio portrait background */
+            luxe: {
+              cream: '#f9f5f0',         /* Primary warm ivory/cream page bg */
+              creamDark: '#f2e8dc',
+              cardBg: '#fefbf8',
+              wine: '#2c0d15',          /* Deep rich burgundy/wine from reference */
+              wineDark: '#1e080e',
+              wineLight: '#441421',
+              gold: '#c99f66',          /* Signature champagne gold from reference */
+              goldHover: '#b88d55',
+              goldLight: '#ecd8bd',
+              goldBorder: 'rgba(201, 159, 102, 0.3)',
+              textDark: '#1a1415',
+              textMuted: '#6d6263',
+              borderLight: '#eadcd0'
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif'],
-            kanji: ['"Noto Sans SC"', 'sans-serif']
-          },
-          letterSpacing: {
-            widest: '.2em',
-            tightest: '-.03em'
+            serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif']
           }
         }
       }
@@ -52,115 +52,192 @@
   </script>
 
   <style>
-    /* Architectural Custom Scrollbar */
+    /* Warm luxury custom scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #0f1013;
+      background: #f9f5f0;
     }
     ::-webkit-scrollbar-thumb {
-      background: #252830;
+      background: #d8c2ad;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #ff5424;
+      background: #c99f66;
     }
 
-    /* Reference floating pill styling */
-    .reference-pill {
-      background: rgba(22, 24, 29, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7);
+    /* Arched portal cards for "Shop By Occasion" */
+    .occasion-arch {
+      border-top-left-radius: 9999px;
+      border-top-right-radius: 9999px;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .occasion-arch:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgba(68, 20, 33, 0.25);
     }
 
-    /* Refined product hover */
-    .editorial-card {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    /* Gold gradient button from reference */
+    .btn-gold {
+      background: linear-gradient(135deg, #dfbc88 0%, #c99f66 100%);
+      color: #1c090e;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(201, 159, 102, 0.25);
     }
-    .editorial-card:hover {
-      transform: translateY(-4px);
-    }
-
-    /* Mobile simulator mode */
-    .simulated-mobile-frame {
-      max-width: 420px !important;
-      margin: 24px auto !important;
-      border: 8px solid #23262f !important;
-      border-radius: 44px !important;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
-      overflow: hidden !important;
-      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #e8cca1 0%, #b88d55 100%);
+      box-shadow: 0 6px 20px rgba(201, 159, 102, 0.4);
+      transform: translateY(-1px);
     }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    .btn-outline-gold {
+      border: 1px solid #c99f66;
+      color: #c99f66;
+      letter-spacing: 0.12em;
+      transition: all 0.3s ease;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .btn-outline-gold:hover {
+      background: #c99f66;
+      color: #1c090e;
     }
 
-    /* Vertical text for kanji lapel */
-    .writing-mode-vertical {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
+    /* Staggered headline lines reveal */
+    .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: .08em;
+    }
+    .line > span {
+      display: block;
+    }
+
+    /* Nav animated hover underline */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 1px;
+      width: 100%;
+      background: #c99f66;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Solid Nav Transition on scroll */
+    .main-nav {
+      transition: background .4s, box-shadow .4s, padding .4s, border-color .4s;
+    }
+    .main-nav.solid {
+      background: rgba(249, 245, 240, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 12px rgba(44, 13, 21, 0.08);
+      border-color: rgba(201, 159, 102, 0.25);
+      padding-block: 10px;
+    }
+
+    /* Cart Count Bump effect */
+    .count-badge {
+      display: inline-grid;
+      place-items: center;
+      transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .count-badge.bump {
+      transform: scale(1.4);
+    }
+
+    /* Dripping scroll indicator */
+    .scroll-indicator b {
+      display: block;
+      width: 1px;
+      height: 38px;
+      background: #c99f66;
+      transform-origin: top;
+      animation: drip 2s ease-in-out infinite;
+    }
+    @keyframes drip {
+      0% { transform: scaleY(0); }
+      50% { transform: scaleY(1); }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
+    /* Image zoom hover effect */
+    .zoom-img {
+      transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .zoom-card:hover .zoom-img {
+      transform: scale(1.05);
     }
   </style>
 </head>
-<body class="bg-brand-canvas text-neutral-200 font-sans selection:bg-brand-accent selection:text-white antialiased min-h-screen">
+<body class="bg-luxe-cream text-luxe-textDark font-sans selection:bg-luxe-wine selection:text-white antialiased min-h-screen">
 
   <!-- ================================================================= -->
-  <!-- TOP OPERATING BAR (Matches Reference Header Navigation Pills) -->
+  <!-- 1. ANNOUNCEMENT ROTATOR (With GSAP Transitions) -->
   <!-- ================================================================= -->
-  <header class="sticky top-0 z-50 bg-brand-canvas/95 backdrop-blur-md border-b border-white/[0.06] px-4 sm:px-8 py-3 transition-all">
-    <div class="max-w-[1400px] mx-auto flex items-center justify-between text-xs font-mono tracking-wider">
+  <div class="ann bg-luxe-wine text-luxe-goldLight text-[11px] font-sans tracking-widest uppercase h-9 flex items-center justify-center gap-3 px-4 border-b border-luxe-gold/20 relative z-50 select-none">
+    <button id="aPrev" class="px-2 text-luxe-gold hover:text-white transition font-serif text-sm">‹</button>
+    <p id="aText" class="m-0 max-w-[80vw] text-center truncate font-medium text-[10px] sm:text-[11px] tracking-widest">
+      AUTUMN / WINTER COUTURE COLLECTION NOW LIVE
+    </p>
+    <button id="aNext" class="px-2 text-luxe-gold hover:text-white transition font-serif text-sm">›</button>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- 2. MAIN STICKY NAVIGATION -->
+  <!-- ================================================================= -->
+  <header id="mainNav" class="main-nav sticky top-0 z-40 bg-luxe-cream/95 backdrop-blur-md border-b border-luxe-borderLight px-4 sm:px-8 py-4">
+    <div class="max-w-[1380px] mx-auto flex items-center justify-between">
       
-      <!-- Left: Operating Index Pill [01] -->
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-accent text-[11px] font-bold">
-          [01]
-        </span>
-        <span class="hidden lg:inline text-[11px] text-neutral-400 uppercase tracking-widest font-mono">
-          LUNACORE™ // SYSTEM 2.0
-        </span>
-      </div>
-
-      <!-- Center: Thin Outlined Navigation Pills (Directly from top of reference image) -->
-      <nav class="flex items-center gap-1.5 p-1 bg-brand-surface/80 rounded-full border border-white/10 overflow-x-auto no-scrollbar max-w-full">
-        <a href="#hero" class="nav-pill active px-4 py-1.5 rounded-full text-white bg-transparent border border-brand-accent text-[11px] transition whitespace-nowrap">
-          Main Page
-        </a>
-        <a href="#catalog" class="nav-pill px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent hover:border-white/10 text-[11px] transition whitespace-nowrap">
-          Catalog
-        </a>
-        <a href="#best-sellers" class="nav-pill px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent hover:border-white/10 text-[11px] transition whitespace-nowrap">
-          Best Selling
-        </a>
-        <a href="#offers" class="nav-pill px-4 py-1.5 rounded-full text-brand-accent hover:text-white border border-transparent hover:border-brand-accent/40 text-[11px] transition whitespace-nowrap flex items-center gap-1">
-          <span>Offers</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse"></span>
-        </a>
-        <a href="#testimonials" class="nav-pill px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent hover:border-white/10 text-[11px] transition whitespace-nowrap">
-          Reviews
-        </a>
-        <a href="#collection" class="nav-pill px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent hover:border-white/10 text-[11px] transition whitespace-nowrap">
-          Collection
-        </a>
-        <button onclick="toggleCart()" class="nav-pill px-4 py-1.5 rounded-full text-neutral-400 hover:text-white border border-transparent hover:border-white/10 text-[11px] transition flex items-center gap-1.5 whitespace-nowrap">
-          <span>Cart / Menu</span>
-          <span id="top-cart-badge" class="px-1.5 py-0.2 text-[10px] bg-brand-accent text-white rounded-full font-bold">0</span>
-        </button>
+      <!-- Left: Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-sans tracking-widest uppercase text-luxe-textMuted">
+        <a href="#hero" class="nav-link text-luxe-textDark hover:text-luxe-gold transition font-medium">Home</a>
+        <a href="#occasions" class="nav-link hover:text-luxe-gold transition">Occasions</a>
+        <a href="#eveningwear" class="nav-link hover:text-luxe-gold transition">Eveningwear</a>
+        <a href="#workwear" class="nav-link hover:text-luxe-gold transition">Workwear</a>
+        <a href="#accessories" class="nav-link hover:text-luxe-gold transition">Accessories</a>
+        <a href="#styling" class="nav-link hover:text-luxe-gold transition">Styling</a>
+        <a href="#bestsellers" class="nav-link hover:text-luxe-gold transition">Bestsellers</a>
       </nav>
 
-      <!-- Right: Desktop / Mobile Preview Mode Switcher (From top-right of reference mockup) -->
-      <div class="flex items-center gap-3">
-        <button id="view-mode-btn" onclick="toggleDeviceView()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surface hover:bg-brand-surfaceLight border border-white/10 text-neutral-300 hover:text-white text-[11px] transition">
-          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-brand-accent"></i>
-          <span id="view-mode-label">Desktop / Mobile</span>
+      <!-- Center: Brand Logo -->
+      <a href="#hero" class="text-center group">
+        <span class="block text-xl sm:text-2xl font-serif tracking-widest text-luxe-wine uppercase font-semibold">
+          MAISON AURELIA
+        </span>
+        <span class="block text-[9px] font-sans tracking-widest text-luxe-gold uppercase -mt-0.5">
+          HAUTE COUTURE • PARIS
+        </span>
+      </a>
+
+      <!-- Right: Tools -->
+      <div class="flex items-center gap-4 text-xs font-sans tracking-wider text-luxe-textDark">
+        <button onclick="openSearchModal()" class="p-1 hover:text-luxe-gold transition" title="Search">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+        <button onclick="showToast('WISHLIST: 4 ITEMS SAVED')" class="p-1 hover:text-luxe-gold transition relative" title="Wishlist">
+          <i data-lucide="heart" class="w-4 h-4"></i>
+          <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-luxe-gold text-white rounded-full text-[9px] flex items-center justify-center font-bold">4</span>
+        </button>
+        <button onclick="toggleCart()" class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxe-wine text-white hover:bg-luxe-wineLight transition shadow-sm">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-luxe-gold"></i>
+          <span class="font-medium text-xs">BAG</span>
+          <span id="header-cart-count" class="count-badge text-luxe-gold font-bold">0</span>
         </button>
       </div>
 
@@ -169,579 +246,401 @@
 
 
   <!-- ================================================================= -->
-  <!-- MAIN VIEWPORT CONTAINER (The Rounded Card Framework from Reference) -->
+  <!-- 3. HERO SECTION: "Own The Moment" (High Quality Photography) -->
   <!-- ================================================================= -->
-  <main id="main-viewport" class="w-full transition-all duration-500 ease-out">
-    <div class="max-w-[1360px] mx-auto px-2 sm:px-6 py-4">
+  <section id="hero" class="relative bg-luxe-wine text-white overflow-hidden min-h-[580px] lg:min-h-[640px] flex items-stretch">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 w-full">
+      
+      <!-- Left Column: Headline with .line > span Split Text Mask -->
+      <div class="lg:col-span-5 p-8 sm:p-14 lg:p-20 flex flex-col justify-between space-y-8 z-10">
+        
+        <div class="space-y-6 my-auto">
+          <span class="hero-rv text-[11px] font-sans tracking-widest uppercase text-luxe-gold font-medium block">
+            THE NEW OCCASION DROP
+          </span>
 
-      <!-- MASTER ENCLOSING CARD (Exact rounded silhouette with dark inner canvas) -->
-      <div class="bg-brand-surface rounded-[28px] sm:rounded-[40px] border border-white/[0.08] overflow-hidden shadow-2xl relative">
+          <h1 id="heroHeadline" class="text-5xl sm:text-7xl lg:text-8xl font-serif text-white leading-none font-normal">
+            <span class="line"><span>Own The</span></span>
+            <span class="line"><span>Moment</span></span>
+          </h1>
 
-        <!-- ============================================================= -->
-        <!-- 1. INNER STORE HEADER (Logo, Primary Nav, Login & Cart) -->
-        <!-- ============================================================= -->
-        <div class="px-6 sm:px-12 py-6 border-b border-white/[0.04] flex items-center justify-between relative z-20">
-          
-          <!-- Brand Logo: Geometric Crest + Made in Japan Micro-label -->
-          <div class="flex items-center gap-3 cursor-pointer select-none" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-            <div class="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-            </div>
-            <div>
-              <div class="text-[11px] font-mono tracking-widest text-white font-semibold">LUNACORE</div>
-              <div class="text-[9px] font-mono text-neutral-500 tracking-wider uppercase">MADE IN JAPAN // SINCE 2018</div>
-            </div>
+          <p class="hero-rv text-luxe-creamDark/80 text-sm sm:text-base font-sans font-light leading-relaxed max-w-md">
+            Timeless pieces for unforgettable nights and every special occasion.
+          </p>
+
+          <div class="hero-rv pt-2">
+            <a href="#occasions" class="btn-gold inline-flex items-center gap-3 px-8 py-3.5 rounded text-xs uppercase font-medium">
+              <span>EXPLORE COLLECTION</span>
+              <span>→</span>
+            </a>
           </div>
-
-          <!-- Editorial Nav Links: NEW, MEN, WOMEN, ACCESSORIES -->
-          <nav class="hidden md:flex items-center gap-9 text-xs font-mono tracking-widest uppercase text-neutral-400">
-            <a href="#catalog" onclick="filterCategory('all')" class="hover:text-white transition">NEW</a>
-            <a href="#catalog" onclick="filterCategory('men')" class="hover:text-white transition">MEN</a>
-            <a href="#catalog" onclick="filterCategory('women')" class="hover:text-white transition">WOMEN</a>
-            <a href="#catalog" onclick="filterCategory('accessories')" class="hover:text-white transition">ACCESSORIES</a>
-          </nav>
-
-          <!-- Right Action Items: Search, Login, Cart -->
-          <div class="flex items-center gap-4 text-xs font-mono tracking-wider">
-            <button onclick="openSearchModal()" class="text-neutral-400 hover:text-white transition p-1" title="Search catalog">
-              <i data-lucide="search" class="w-4 h-4"></i>
-            </button>
-            <button onclick="openAuthModal()" class="text-neutral-400 hover:text-white transition hidden sm:inline">
-              LOGIN
-            </button>
-            <button onclick="toggleCart()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white transition">
-              <span class="font-medium">CART</span>
-              <span id="header-cart-count" class="text-brand-accent font-bold">0</span>
-            </button>
-          </div>
-
         </div>
 
-
-        <!-- ============================================================= -->
-        <!-- 2. HERO SECTION: SS23 SALE (1:1 with Reference Image) -->
-        <!-- ============================================================= -->
-        <section id="hero" class="relative min-h-[580px] lg:min-h-[640px] px-6 sm:px-14 py-12 flex items-center overflow-hidden border-b border-white/[0.04]">
-          
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative z-10">
-            
-            <!-- Left Editorial Text Block (SS23 SALE) -->
-            <div class="lg:col-span-5 space-y-6">
-              
-              <div class="space-y-1">
-                <h1 class="text-5xl sm:text-7xl font-bold font-display text-white tracking-tight leading-none">
-                  SS23 SALE
-                </h1>
-              </div>
-
-              <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-sm font-sans font-light">
-                Style and comfort in one piece — feel the difference with our comfortable and stylish collections.
-              </p>
-
-              <!-- Subtle Category Shortcuts -->
-              <div class="pt-4 flex items-center gap-3 font-mono text-xs">
-                <a href="#catalog" class="px-5 py-2.5 rounded-full bg-white text-black font-semibold tracking-wider uppercase text-[11px] hover:bg-neutral-200 transition">
-                  EXPLORE DROP
-                </a>
-                <a href="#collection" class="px-5 py-2.5 rounded-full bg-white/[0.04] border border-white/10 text-neutral-300 hover:text-white uppercase text-[11px] transition">
-                  PF23 LOOKBOOK
-                </a>
-              </div>
-
-            </div>
-
-            <!-- Center & Right: Reference Hero Model with Floating Pill -->
-            <div class="lg:col-span-7 relative flex justify-center items-center">
-              
-              <div class="relative w-full max-w-[440px] sm:max-w-[480px] h-[480px] sm:h-[540px] rounded-3xl overflow-hidden bg-brand-surfaceLight border border-white/[0.06] flex items-end justify-center group">
-                
-                <!-- Hero Model Image (Extracted & 3x Crisp from Reference) -->
-                <img 
-                  id="hero-model-img"
-                  src="assets/hero_model@3x.jpg" 
-                  alt="Kimono Liu Kang SS23 Techwear" 
-                  class="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
-                />
-
-                <!-- Vertical Kanji Garment Lapel Badge (徒尔街头) -->
-                <div class="absolute left-6 top-1/4 px-2 py-4 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-white font-kanji text-[11px] writing-mode-vertical tracking-widest hidden sm:block select-none">
-                  徒尔街头
-                </div>
-
-                <!-- FLOATING BADGE PILL (Matches the exact card in the reference design!) -->
-                <div class="absolute bottom-6 left-6 right-6 p-3.5 rounded-2xl reference-pill flex items-center justify-between gap-4 z-20">
-                  <div class="space-y-0.5">
-                    <div class="text-[12px] font-bold text-white font-display tracking-tight">KIMONO LIU KANG</div>
-                    <div class="flex items-center gap-2 text-xs font-mono">
-                      <span class="text-white font-bold text-xs">₹4,999</span>
-                      <span class="line-through text-neutral-500 text-[10px]">₹7,999</span>
-                    </div>
-                  </div>
-
-                  <!-- Reference Orange Pill Button: ADD TO BAG -->
-                  <div class="flex items-center gap-3">
-                    <button 
-                      onclick="addToBag({id: 'hero-kimono', name: 'KIMONO LIU KANG', price: 4999, oldPrice: 7999, category: 'men', image: 'assets/hero_model@3x.jpg', tag: 'SS23 SALE'})"
-                      class="px-4 py-2 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] tracking-wider uppercase transition flex items-center gap-1.5 shadow-md whitespace-nowrap"
-                    >
-                      <span>ADD TO BAG</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Reference Pagination Indicator Dots: — • • • -->
-                <div class="absolute top-4 left-6 flex items-center gap-1.5">
-                  <span class="w-5 h-1 rounded-full bg-brand-accent"></span>
-                  <span class="w-1.5 h-1 rounded-full bg-white/30"></span>
-                  <span class="w-1.5 h-1 rounded-full bg-white/30"></span>
-                  <span class="w-1.5 h-1 rounded-full bg-white/30"></span>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 3. NEW ARRIVALS (Exact 4-Column Portrait Grid from Reference) -->
-        <!-- ============================================================= -->
-        <section id="catalog" class="px-6 sm:px-12 py-12 border-b border-white/[0.04]">
-          
-          <!-- Section Header Row: Title (12) + SHOP ALL Pill -->
-          <div class="flex items-center justify-between mb-8">
-            <div class="flex items-center gap-2">
-              <h2 class="text-base sm:text-lg font-bold font-display text-white tracking-wider uppercase">
-                NEW ARRIVALS
-              </h2>
-              <span class="text-xs font-mono text-brand-accent font-semibold">(12)</span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <a href="#best-sellers" class="px-4 py-1.5 rounded-full border border-white/10 hover:border-white/30 text-neutral-400 hover:text-white text-xs font-mono uppercase tracking-wider transition">
-                SHOP ALL
-              </a>
-            </div>
+        <div class="hero-rv flex items-center justify-between pt-6 border-t border-white/10">
+          <div class="flex items-center gap-3 text-xs font-mono text-luxe-gold">
+            <span class="font-bold">01</span>
+            <span class="w-12 h-[1px] bg-luxe-gold/60"></span>
+            <span class="text-white/40">03</span>
           </div>
 
-          <!-- 4 Tall Studio Portrait Cards (from Reference Image) -->
-          <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            
-            <!-- Card 1: ANORAK STALKER (Features reference floating card) -->
-            <div class="group relative rounded-2xl bg-brand-surfaceLight overflow-hidden editorial-card border border-white/[0.04] flex flex-col justify-between">
-              <div class="relative h-[340px] sm:h-[380px] w-full overflow-hidden bg-brand-studioGrey cursor-pointer" onclick="openProductModal('anorak-stalker')">
-                <img 
-                  src="assets/prod_anorak@3x.jpg" 
-                  alt="Anorak Stalker" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
-                />
-                
-                <!-- Floating Pill Card on Garment (Matches Reference 1:1) -->
-                <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl reference-pill flex items-center justify-between gap-2 shadow-lg">
-                  <div class="overflow-hidden">
-                    <div class="text-[11px] font-bold text-white font-display truncate">ANORAK STALKER</div>
-                    <div class="flex items-center gap-1.5 text-xs font-mono">
-                      <span class="text-white font-bold text-[11px]">₹11,999</span>
-                      <span class="line-through text-neutral-500 text-[9px]">₹15,499</span>
-                    </div>
-                  </div>
-                  <button 
-                    onclick="event.stopPropagation(); addToBagById('anorak-stalker')"
-                    class="px-3 py-1 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] tracking-wider uppercase transition whitespace-nowrap"
-                  >
-                    ADD TO BAG
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: KIMONO NORAGI -->
-            <div class="group relative rounded-2xl bg-brand-surfaceLight overflow-hidden editorial-card border border-white/[0.04] flex flex-col justify-between">
-              <div class="relative h-[340px] sm:h-[380px] w-full overflow-hidden bg-brand-studioGrey cursor-pointer" onclick="openProductModal('kimono-liu-kang')">
-                <img 
-                  src="assets/prod_kimono@3x.jpg" 
-                  alt="Kimono Liu Kang" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
-                />
-                <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl reference-pill flex items-center justify-between gap-2 shadow-lg opacity-90 group-hover:opacity-100 transition">
-                  <div class="overflow-hidden">
-                    <div class="text-[11px] font-bold text-white font-display truncate">KIMONO NORAGI</div>
-                    <div class="flex items-center gap-1.5 text-xs font-mono">
-                      <span class="text-white font-bold text-[11px]">₹4,999</span>
-                      <span class="line-through text-neutral-500 text-[9px]">₹7,999</span>
-                    </div>
-                  </div>
-                  <button 
-                    onclick="event.stopPropagation(); addToBagById('kimono-liu-kang')"
-                    class="px-3 py-1 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] tracking-wider uppercase transition whitespace-nowrap"
-                  >
-                    ADD TO BAG
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: STORM WINDBREAKER -->
-            <div class="group relative rounded-2xl bg-brand-surfaceLight overflow-hidden editorial-card border border-white/[0.04] flex flex-col justify-between">
-              <div class="relative h-[340px] sm:h-[380px] w-full overflow-hidden bg-brand-studioGrey cursor-pointer" onclick="openProductModal('tactical-windbreaker')">
-                <img 
-                  src="assets/prod_windbreaker@3x.jpg" 
-                  alt="Storm Windbreaker" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
-                />
-                <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl reference-pill flex items-center justify-between gap-2 shadow-lg opacity-90 group-hover:opacity-100 transition">
-                  <div class="overflow-hidden">
-                    <div class="text-[11px] font-bold text-white font-display truncate">STORM WINDBREAKER</div>
-                    <div class="flex items-center gap-1.5 text-xs font-mono">
-                      <span class="text-white font-bold text-[11px]">₹8,499</span>
-                      <span class="line-through text-neutral-500 text-[9px]">₹11,200</span>
-                    </div>
-                  </div>
-                  <button 
-                    onclick="event.stopPropagation(); addToBagById('tactical-windbreaker')"
-                    class="px-3 py-1 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] tracking-wider uppercase transition whitespace-nowrap"
-                  >
-                    ADD TO BAG
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: SHADOW RUNNER TEE -->
-            <div class="group relative rounded-2xl bg-brand-surfaceLight overflow-hidden editorial-card border border-white/[0.04] flex flex-col justify-between">
-              <div class="relative h-[340px] sm:h-[380px] w-full overflow-hidden bg-brand-studioGrey cursor-pointer" onclick="openProductModal('shadow-longsleeve')">
-                <img 
-                  src="assets/prod_shadow@3x.jpg" 
-                  alt="Shadow Runner Long" 
-                  class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
-                />
-                <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl reference-pill flex items-center justify-between gap-2 shadow-lg opacity-90 group-hover:opacity-100 transition">
-                  <div class="overflow-hidden">
-                    <div class="text-[11px] font-bold text-white font-display truncate">SHADOW RUNNER TEE</div>
-                    <div class="flex items-center gap-1.5 text-xs font-mono">
-                      <span class="text-white font-bold text-[11px]">₹3,499</span>
-                      <span class="line-through text-neutral-500 text-[9px]">₹4,999</span>
-                    </div>
-                  </div>
-                  <button 
-                    onclick="event.stopPropagation(); addToBagById('shadow-longsleeve')"
-                    class="px-3 py-1 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white font-mono font-bold text-[10px] tracking-wider uppercase transition whitespace-nowrap"
-                  >
-                    ADD TO BAG
-                  </button>
-                </div>
-              </div>
-            </div>
-
+          <div class="scroll-indicator flex items-center gap-2 text-[10px] font-mono text-luxe-creamDark/60 uppercase tracking-widest">
+            <b></b>
+            <span>Scroll</span>
           </div>
-        </section>
+        </div>
 
+      </div>
 
-        <!-- ============================================================= -->
-        <!-- 4. THREE CATEGORY BANNERS (Exact 3 Cards from Reference) -->
-        <!-- ============================================================= -->
-        <section class="px-6 sm:px-12 py-10 border-b border-white/[0.04]">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-            
-            <!-- Category 1: MEN'S CLOTHING -->
-            <div onclick="filterCategory('men'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-64 sm:h-72 rounded-2xl overflow-hidden cursor-pointer border border-white/10 editorial-card">
-              <img 
-                src="assets/cat_men@3x.jpg" 
-                alt="Men's Clothing" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              
-              <!-- Bottom Label Pill with Arrow ↗ (From Reference) -->
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 group-hover:border-white/30 transition">
-                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">MEN'S CLOTHING</span>
-                <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white text-xs">
-                  ↗
-                </div>
-              </div>
-            </div>
+      <!-- Right Column: High Quality Hero Image -->
+      <div class="lg:col-span-7 relative min-h-[380px] lg:min-h-full overflow-hidden">
+        <div id="heroImgWrapper" class="w-full h-full" style="clip-path: inset(0 0 0 0);">
+          <img 
+            id="heroImg"
+            src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1200&q=85" 
+            alt="Burgundy Luxury Evening Dress" 
+            class="w-full h-full object-cover object-center filter contrast-105"
+          />
+        </div>
 
-            <!-- Category 2: ACCESSORIES (Tactical Sling Pack on Slate) -->
-            <div onclick="filterCategory('accessories'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-64 sm:h-72 rounded-2xl overflow-hidden cursor-pointer border border-white/10 editorial-card">
-              <img 
-                src="assets/cat_accessories@3x.jpg" 
-                alt="Accessories" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              
-              <!-- Bottom Label Pill with Arrow ↗ -->
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 group-hover:border-white/30 transition">
-                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">ACCESSORIES</span>
-                <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white text-xs">
-                  ↗
-                </div>
-              </div>
-            </div>
-
-            <!-- Category 3: WOMEN'S CLOTHING (Crouching Cyber Model) -->
-            <div onclick="filterCategory('women'); document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" class="group relative h-64 sm:h-72 rounded-2xl overflow-hidden cursor-pointer border border-white/10 editorial-card">
-              <img 
-                src="assets/cat_women@3x.jpg" 
-                alt="Women's Clothing" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              
-              <!-- Bottom Label Pill with Arrow ↗ -->
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 group-hover:border-white/30 transition">
-                <span class="font-bold text-xs font-display tracking-wider uppercase text-white">WOMEN'S CLOTHING</span>
-                <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white text-xs">
-                  ↗
-                </div>
-              </div>
-            </div>
-
+        <!-- Floating Parallax Detail Pill -->
+        <div id="heroFloat1" class="absolute bottom-8 left-8 p-3.5 rounded-xl bg-luxe-wine/90 backdrop-blur-md border border-luxe-gold/30 shadow-2xl text-xs font-serif hidden sm:flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-luxe-gold animate-ping"></span>
+          <div>
+            <div class="text-white font-medium">Burgundy Backless Gown</div>
+            <div class="text-[10px] font-mono text-luxe-gold">Mulberry Silk • In Stock</div>
           </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 5. EXPLORE COLLECTIONS: LUNACORE PF23 COLLECTION (1:1 Banner) -->
-        <!-- ============================================================= -->
-        <section id="collection" class="px-6 sm:px-12 py-10 border-b border-white/[0.04]">
-          
-          <!-- Top Row Header: EXPLORE COLLECTIONS (3) with Navigation Arrows -->
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xs font-mono uppercase tracking-widest text-neutral-400 flex items-center gap-2">
-              <span>EXPLORE COLLECTIONS</span>
-              <span class="text-brand-accent">(3)</span>
-            </h3>
-            <div class="flex items-center gap-2">
-              <button onclick="prevCollection()" class="w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition border border-white/5 text-xs">
-                &lt;
-              </button>
-              <button onclick="nextCollection()" class="w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition border border-white/5 text-xs">
-                &gt;
-              </button>
-            </div>
-          </div>
-
-          <!-- Wide Cinematic Banner (Extracted Exactly from Reference) -->
-          <div class="relative h-[380px] sm:h-[440px] rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between p-6 sm:p-10 group">
-            
-            <!-- Reference Open Landscape & Model Background -->
-            <img 
-              id="collection-bg"
-              src="assets/coll_pf23@3x.jpg" 
-              alt="Lunacore PF23 Collection" 
-              class="absolute inset-0 w-full h-full object-cover object-center filter brightness-90 transition-all duration-700 group-hover:scale-102"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30"></div>
-
-            <!-- Top Row: Volume Tag -->
-            <div class="relative z-10 flex items-center justify-between">
-              <span class="text-[10px] font-mono text-neutral-300 uppercase tracking-widest">
-                PRE-FALL 2023 // RELEASE 04
-              </span>
-            </div>
-
-            <!-- Center Headline (LUNACORE PF23 COLLECTION from reference) -->
-            <div class="relative z-10 text-center my-auto space-y-1">
-              <h2 id="collection-title" class="text-3xl sm:text-5xl font-bold font-display text-white tracking-tight leading-tight">
-                LUNACORE<br>
-                PF23 COLLECTION
-              </h2>
-            </div>
-
-            <!-- Bottom Row: Subtitle + VIEW COLLECTION Pill Button -->
-            <div class="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-4 border-t border-white/10">
-              <p id="collection-desc" class="text-xs text-neutral-300 max-w-md leading-relaxed font-sans font-light">
-                Explore the boundaries of style with our Pre-Fall 2023. It's a world where fashion meets technology.
-              </p>
-              
-              <button onclick="openLookbookModal()" class="px-5 py-2.5 rounded-full bg-black/60 hover:bg-brand-accent text-white font-mono text-xs uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-brand-accent transition self-start sm:self-auto">
-                VIEW COLLECTION
-              </button>
-            </div>
-
-            <!-- Reference Center Pagination Dots: — • • -->
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10" id="collection-indicators">
-              <span class="w-5 h-1 rounded-full bg-brand-accent"></span>
-              <span class="w-1.5 h-1 rounded-full bg-white/40"></span>
-              <span class="w-1.5 h-1 rounded-full bg-white/40"></span>
-            </div>
-
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 6. BEST SELLING PAGE SECTION (Refined Luxury Editorial Grid) -->
-        <!-- ============================================================= -->
-        <section id="best-sellers" class="px-6 sm:px-12 py-12 border-b border-white/[0.04]">
-          <div class="flex items-center justify-between mb-8">
-            <div>
-              <div class="text-[10px] font-mono text-brand-accent uppercase tracking-widest">CURATED PERFORMANCE</div>
-              <h2 class="text-base sm:text-xl font-bold font-display text-white tracking-wider uppercase mt-1">
-                BEST SELLING GARMENTS
-              </h2>
-            </div>
-            <span class="text-xs font-mono text-neutral-400">4.9 / 5.0 RATED</span>
-          </div>
-
-          <div id="bestsellers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            <!-- Populated via app.js -->
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 7. OFFERS & FLASH PROMOS (Quiet, Clean Luxury Layout) -->
-        <!-- ============================================================= -->
-        <section id="offers" class="px-6 sm:px-12 py-12 border-b border-white/[0.04] bg-[#121418]">
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-            <div class="space-y-1.5">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-brand-accent text-xs font-mono">
-                <span>LIMITED TIME ALLOCATION</span>
-              </div>
-              <h2 class="text-2xl sm:text-3xl font-bold font-display text-white tracking-tight">
-                PROTOTYPE OFFERS & PROMOS
-              </h2>
-              <p class="text-neutral-400 text-xs font-mono">
-                Use code <span class="text-white font-bold cursor-pointer underline" onclick="copyCoupon('TECH20')">TECH20</span> for 20% off at checkout.
-              </p>
-            </div>
-
-            <!-- Ticking Clock -->
-            <div class="flex items-center gap-2 font-mono text-xs p-3 rounded-2xl bg-black/40 border border-white/10">
-              <span class="text-neutral-400 text-[10px]">TIME REMAINING:</span>
-              <span id="offer-timer-hours" class="font-bold text-white">14</span>:
-              <span id="offer-timer-mins" class="font-bold text-white">32</span>:
-              <span id="offer-timer-secs" class="font-bold text-brand-accent">45</span>
-            </div>
-          </div>
-
-          <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <!-- Populated via app.js -->
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 8. TESTIMONIALS (Restrained Verified Client Feedback) -->
-        <!-- ============================================================= -->
-        <section id="testimonials" class="px-6 sm:px-12 py-12 border-b border-white/[0.04]">
-          <div class="flex items-center justify-between mb-8">
-            <div>
-              <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">VERIFIED FEEDBACK</div>
-              <h2 class="text-base sm:text-xl font-bold font-display text-white tracking-wider uppercase mt-1">
-                OPERATOR REVIEWS
-              </h2>
-            </div>
-            <div class="text-xs font-mono text-neutral-400">2,450+ GLOBAL RATINGS</div>
-          </div>
-
-          <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            <!-- Populated via app.js -->
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 9. FOLLOW US ON INSTAGRAM (Exact 6 Photos from Reference) -->
-        <!-- ============================================================= -->
-        <section class="px-6 sm:px-12 py-10 border-b border-white/[0.04]">
-          <div class="text-center mb-6">
-            <h4 class="text-xs font-mono tracking-wider text-neutral-300">
-              Follow us on <span class="text-brand-accent font-semibold">Instagram</span>
-            </h4>
-          </div>
-
-          <!-- 6 Photo Cards (Exact Crops from Reference Image) -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(0)">
-              <img src="assets/insta_1@3x.jpg" alt="Instagram 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(1)">
-              <img src="assets/insta_2@3x.jpg" alt="Instagram 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(2)">
-              <img src="assets/insta_3@3x.jpg" alt="Instagram 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(3)">
-              <img src="assets/insta_4@3x.jpg" alt="Instagram 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(4)">
-              <img src="assets/insta_5@3x.jpg" alt="Instagram 5" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-            <div class="h-32 sm:h-40 rounded-xl overflow-hidden cursor-pointer border border-white/10 group" onclick="showCommunityModal(5)">
-              <img src="assets/insta_6@3x.jpg" alt="Instagram 6" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ============================================================= -->
-        <!-- 10. FOOTER (Exact Layout from Reference Image) -->
-        <!-- ============================================================= -->
-        <footer class="px-6 sm:px-12 py-8 text-neutral-400 font-mono text-[11px]">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/[0.04]">
-            
-            <!-- Left Links from Reference: SHIPPING, ABOUT US, HELP, CONTACT US, PAYMENT, BLOG -->
-            <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-2 uppercase tracking-wider">
-              <a href="#" class="hover:text-white transition">SHIPPING</a>
-              <a href="#" class="hover:text-white transition">ABOUT US</a>
-              <a href="#" class="hover:text-white transition">HELP</a>
-              <a href="#" class="hover:text-white transition">CONTACT US</a>
-              <a href="#" class="hover:text-white transition">PAYMENT</a>
-              <a href="#" class="hover:text-white transition">BLOG</a>
-            </div>
-
-            <!-- Center Logo & Origin from Reference -->
-            <div class="text-center">
-              <div class="text-[9px] text-neutral-500 tracking-widest uppercase">
-                MADE IN JAPAN / SINCE 2018
-              </div>
-            </div>
-
-            <!-- Right Socials from Reference: INSTAGRAM, YOUTUBE, TIKTOK, TELEGRAM -->
-            <div class="flex items-center gap-4 uppercase tracking-wider text-neutral-400">
-              <a href="#" class="hover:text-white transition">INSTAGRAM</a>
-              <a href="#" class="hover:text-white transition">YOUTUBE</a>
-              <a href="#" class="hover:text-white transition">TIKTOK</a>
-              <a href="#" class="hover:text-white transition">TELEGRAM</a>
-            </div>
-
-          </div>
-
-          <div class="pt-4 text-center text-neutral-600 text-[10px]">
-            © 2023–2026 LUNACORE INC. ALL RIGHTS RESERVED.
-          </div>
-        </footer>
-
-      </div> <!-- /MASTER ENCLOSING CARD -->
+        </div>
+      </div>
 
     </div>
-  </main>
+  </section>
 
 
-  <!-- ============================================================= -->
-  <!-- SLIDE-OVER CART DRAWER -->
-  <!-- ============================================================= -->
+  <!-- ================================================================= -->
+  <!-- 4. "SHOP BY OCCASION" (Expanded to 8 High-Res Arched Portal Cards) -->
+  <!-- ================================================================= -->
+  <section id="occasions" class="py-16 sm:py-24 px-4 sm:px-8 max-w-[1400px] mx-auto">
+    
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 section-head">
+      <div>
+        <span class="text-[11px] font-sans tracking-widest uppercase text-luxe-gold font-medium block">CURATED DESTINATIONS</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-luxe-wine leading-tight mt-1">
+          Shop By Occasion
+        </h2>
+        <div class="w-16 h-0.5 bg-luxe-gold mt-3"></div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <p class="text-xs text-luxe-textMuted max-w-sm hidden sm:block">
+          From black-tie galas to intimate candlelight dinners, discover curated silhouettes crafted for your defining moments.
+        </p>
+        <a href="#eveningwear" class="inline-flex items-center gap-2 text-xs font-sans tracking-widest uppercase text-luxe-textDark border-b border-luxe-gold pb-1 hover:text-luxe-gold transition whitespace-nowrap">
+          <span>VIEW ALL OCCASIONS</span>
+          <span>&gt;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 8 High Quality Arched Portal Cards Grid -->
+    <div id="occasions-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Populated dynamically via app.js with 8 high-res cards -->
+    </div>
+
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 5. DUAL SPLIT EDITORIAL BANNERS (High Quality Split Layout) -->
+  <!-- ================================================================= -->
+  <section class="border-y border-luxe-borderLight overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      
+      <!-- Left Split: Eveningwear -->
+      <div id="eveningwear" class="split-banner bg-luxe-wine text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden group">
+        <div class="relative z-10 max-w-sm space-y-4">
+          <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-gold">Own The Night</span>
+          <h3 class="text-3xl sm:text-5xl font-serif text-white font-normal">Eveningwear</h3>
+          <p class="text-xs sm:text-sm text-luxe-creamDark/80 font-light leading-relaxed">
+            Dramatic silhouettes. Luxurious fabrics. Unforgettable you.
+          </p>
+          <div class="pt-4">
+            <button onclick="addToBagById('occ-evening')" class="btn-gold px-6 py-3 rounded text-[11px] uppercase tracking-wider">
+              SHOP EVENING
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6 md:mt-0 md:absolute md:right-0 md:bottom-0 md:top-0 w-full md:w-1/2 h-72 md:h-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=800&q=85" alt="Eveningwear Model" class="w-full h-full object-cover object-top zoom-img">
+        </div>
+      </div>
+
+      <!-- Right Split: Workwear -->
+      <div id="workwear" class="split-banner bg-[#240a11] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden group border-t md:border-t-0 md:border-l border-white/10">
+        <div class="relative z-10 max-w-sm space-y-4">
+          <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-gold">Power In Style</span>
+          <h3 class="text-3xl sm:text-5xl font-serif text-white font-normal">Workwear</h3>
+          <p class="text-xs sm:text-sm text-luxe-creamDark/80 font-light leading-relaxed">
+            Polished looks for powerful days.
+          </p>
+          <div class="pt-4">
+            <button onclick="addToBagById('workwear-suit')" class="btn-gold px-6 py-3 rounded text-[11px] uppercase tracking-wider">
+              SHOP WORKWEAR
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6 md:mt-0 md:absolute md:right-0 md:bottom-0 md:top-0 w-full md:w-1/2 h-72 md:h-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&w=800&q=85" alt="Workwear Model" class="w-full h-full object-cover object-top zoom-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 6. ACCESSORIES WIDE SILK BANNER -->
+  <!-- ================================================================= -->
+  <section id="accessories" class="relative min-h-[340px] sm:min-h-[400px] flex items-center overflow-hidden border-b border-luxe-borderLight">
+    <img 
+      src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1600&q=85" 
+      alt="Luxury Accessories Satin Silk Flatlay" 
+      class="absolute inset-0 w-full h-full object-cover object-center filter brightness-95"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-luxe-cream via-luxe-cream/70 to-transparent"></div>
+
+    <div class="max-w-[1380px] mx-auto px-6 sm:px-14 py-12 relative z-10 w-full">
+      <div class="max-w-md space-y-3">
+        <span class="text-[11px] font-sans tracking-widest uppercase text-luxe-gold font-semibold">
+          The Finishing Touch
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-luxe-wine leading-tight">
+          Accessories
+        </h2>
+        <p class="text-xs sm:text-sm text-luxe-textMuted leading-relaxed font-sans">
+          Details that complete every look. Handcrafted Italian quilted lambskin, freshwater pearls, and Swiss horology.
+        </p>
+        <div class="pt-3">
+          <button onclick="addToBagById('acc-bag')" class="btn-gold px-6 py-3 rounded text-[11px] uppercase tracking-wider">
+            SHOP ACCESSORIES
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 7. "STYLING SUGGESTIONS" (Expanded with 8 High Quality Cards) -->
+  <!-- ================================================================= -->
+  <section id="styling" class="py-16 sm:py-24 px-4 sm:px-8 max-w-[1400px] mx-auto">
+    
+    <div class="text-center max-w-xl mx-auto mb-12 space-y-1 section-head">
+      <span class="text-[11px] font-sans tracking-widest uppercase text-luxe-gold font-medium">Style, Your Way</span>
+      <h2 class="text-3xl sm:text-4xl font-serif text-luxe-wine">Styling Suggestions</h2>
+      <p class="text-xs text-luxe-textMuted">Complete head-to-toe curated ensembles with matched accessories</p>
+    </div>
+
+    <!-- 8 Curated Outfit Cards Grid with High Quality Crystal-Clear Photos -->
+    <div id="styling-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Populated via app.js with 8 High Quality Styling Ensembles -->
+    </div>
+
+    <!-- Center Button: GET INSPIRED -->
+    <div class="text-center mt-12">
+      <button onclick="showToast('STYLING LOOKBOOK BOOKMARK APPLIED')" class="btn-outline-gold px-8 py-3 rounded text-xs uppercase tracking-widest font-sans font-medium">
+        GET INSPIRED
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 8. CURATED EDITS & BESTSELLERS (Expanded Grid with High Quality Photos) -->
+  <!-- ================================================================= -->
+  <section id="bestsellers" class="border-t border-luxe-borderLight">
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+      
+      <!-- Left Column: Designer-Inspired Edits -->
+      <div class="lg:col-span-5 bg-luxe-wine text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden group">
+        <div class="space-y-4 max-w-sm relative z-10">
+          <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-gold">Curated For You</span>
+          <h3 class="text-3xl sm:text-4xl font-serif text-white font-normal leading-tight">
+            Designer-Inspired Edits
+          </h3>
+          <p class="text-xs text-luxe-creamDark/80 font-light leading-relaxed">
+            Handpicked looks inspired by iconic runway moments.
+          </p>
+          <div class="pt-3">
+            <button onclick="showToast('EXPLORING RUNWAY ARCHIVES')" class="btn-gold px-6 py-2.5 rounded text-[10px] uppercase tracking-wider">
+              EXPLORE EDITS
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 relative h-72 sm:h-80 rounded-xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=85" alt="Runway Couture Edits" class="w-full h-full object-cover object-center zoom-img">
+        </div>
+      </div>
+
+      <!-- Right Column: Customer Favorites / Bestsellers (Expanded 8 Cards Grid) -->
+      <div class="lg:col-span-7 bg-[#fbf6f0] p-8 sm:p-12 lg:p-14 flex flex-col justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-gold font-semibold">Customer Favorites</span>
+            <h3 class="text-3xl font-serif text-luxe-wine">Bestsellers</h3>
+            <p class="text-xs text-luxe-textMuted mt-0.5">Loved by many. Chosen for you.</p>
+          </div>
+
+          <button onclick="document.getElementById('bestsellers-grid').scrollIntoView({behavior:'smooth'})" class="btn-gold px-5 py-2.5 rounded text-[10px] uppercase tracking-wider self-start sm:self-auto">
+            SHOP BESTSELLERS
+          </button>
+        </div>
+
+        <!-- Bestsellers Grid with High-Res Images & Wishlist -->
+        <div id="bestsellers-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <!-- Populated via app.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 9. "LOVED BY OUR COMMUNITY" (Testimonials) -->
+  <!-- ================================================================= -->
+  <section class="py-16 sm:py-20 px-4 sm:px-8 bg-luxe-creamDark/50 border-t border-luxe-borderLight">
+    <div class="max-w-[1380px] mx-auto space-y-10">
+      
+      <div class="text-center space-y-1 section-head">
+        <h3 class="text-2xl sm:text-3xl font-serif text-luxe-wine">Loved By Our Community</h3>
+        <p class="text-xs text-luxe-textMuted">Over 15,000+ couture clients dressed worldwide</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="testimonial-card bg-white p-6 rounded-xl border border-luxe-borderLight shadow-sm space-y-3">
+          <div class="text-amber-500 text-xs">★★★★★</div>
+          <p class="text-xs text-luxe-textDark leading-relaxed italic font-serif">
+            "The fit, the fabric, the packaging — everything felt so luxurious! Wore the Burgundy Soirée gown to an annual charity gala and received endless compliments."
+          </p>
+          <div class="text-[10px] font-sans text-luxe-textMuted pt-2 border-t border-luxe-borderLight">
+            — Ananya S., Mumbai
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-6 rounded-xl border border-luxe-borderLight shadow-sm space-y-3">
+          <div class="text-amber-500 text-xs">★★★★★</div>
+          <p class="text-xs text-luxe-textDark leading-relaxed italic font-serif">
+            "My go-to store for every special occasion. Never disappoints. The tailored blush workwear suit fits like bespoke Savile Row tailoring."
+          </p>
+          <div class="text-[10px] font-sans text-luxe-textMuted pt-2 border-t border-luxe-borderLight">
+            — Divya M., New Delhi
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-6 rounded-xl border border-luxe-borderLight shadow-sm space-y-3">
+          <div class="text-amber-500 text-xs">★★★★★</div>
+          <p class="text-xs text-luxe-textDark leading-relaxed italic font-serif">
+            "Elegant, feminine, and timeless. I always get compliments whenever I wear their champagne silk slip dress. Premium stitching and fast delivery."
+          </p>
+          <div class="text-[10px] font-sans text-luxe-textMuted pt-2 border-t border-luxe-borderLight">
+            — Sarah L., London
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white p-6 rounded-xl border border-luxe-borderLight shadow-sm space-y-3">
+          <div class="text-amber-500 text-xs">★★★★★</div>
+          <p class="text-xs text-luxe-textDark leading-relaxed italic font-serif">
+            "Beautiful pieces that make you feel confident instantly. The quilted leather chain bag and gold watch exceeded my highest expectations."
+          </p>
+          <div class="text-[10px] font-sans text-luxe-textMuted pt-2 border-t border-luxe-borderLight">
+            — Natasha K., Dubai
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 10. LUXURY FOOTER -->
+  <!-- ================================================================= -->
+  <footer class="bg-luxe-wine text-luxe-creamDark py-14 px-6 sm:px-12 border-t border-luxe-gold/20">
+    <div class="max-w-[1380px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-10 text-xs font-sans">
+      
+      <div class="space-y-3">
+        <h4 class="text-lg font-serif text-white tracking-widest">MAISON AURELIA</h4>
+        <p class="text-luxe-creamDark/70 text-[11px] leading-relaxed">
+          Crafting timeless silhouettes for unforgettable evenings and milestones. Designed in Paris, handcrafted by artisan ateliers.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <div class="text-white font-serif uppercase tracking-widest text-xs">Boutique Collections</div>
+        <div class="space-y-1.5 text-luxe-creamDark/70 text-[11px]">
+          <div><a href="#occasions" class="hover:text-luxe-gold transition">Evening Soirée</a></div>
+          <div><a href="#occasions" class="hover:text-luxe-gold transition">Wedding Couture</a></div>
+          <div><a href="#workwear" class="hover:text-luxe-gold transition">Executive Tailoring</a></div>
+          <div><a href="#accessories" class="hover:text-luxe-gold transition">Fine Leather Accessories</a></div>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="text-white font-serif uppercase tracking-widest text-xs">Client Services</div>
+        <div class="space-y-1.5 text-luxe-creamDark/70 text-[11px]">
+          <div><a href="#" class="hover:text-luxe-gold transition">Complimentary White-Glove Shipping</a></div>
+          <div><a href="#" class="hover:text-luxe-gold transition">Made-to-Measure Consultations</a></div>
+          <div><a href="#" class="hover:text-luxe-gold transition">Returns & Exchanges</a></div>
+          <div><a href="#" class="hover:text-luxe-gold transition">Care & Preservation</a></div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="text-white font-serif uppercase tracking-widest text-xs">Private Newsletter</div>
+        <p class="text-[11px] text-luxe-creamDark/70">Receive exclusive invites to runway presentations and private sales.</p>
+        <div class="flex items-center gap-2">
+          <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-black/30 border border-white/20 rounded px-3 py-2 text-white text-[11px] w-full focus:outline-none focus:border-luxe-gold">
+          <button onclick="showToast('SUBSCRIBED TO PRIVATE CLIENT LIST')" class="btn-gold px-4 py-2 rounded text-[11px] font-bold">JOIN</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="max-w-[1380px] mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-luxe-creamDark/50">
+      <div>© 2026 MAISON AURELIA COUTURE. ALL RIGHTS RESERVED.</div>
+      <div class="flex items-center gap-4 mt-2 sm:mt-0">
+        <a href="#" class="hover:underline">PRIVACY</a>
+        <span>•</span>
+        <a href="#" class="hover:underline">TERMS</a>
+        <span>•</span>
+        <a href="#" class="hover:underline">AUTHENTICITY</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ================================================================= -->
+  <!-- SLIDE-OVER LUXURY SHOPPING BAG DRAWER -->
+  <!-- ================================================================= -->
   <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
-    <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/75 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
 
-    <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#131519] border-l border-white/10 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
+    <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto border-l border-luxe-borderLight">
       
       <!-- Drawer Header -->
-      <div class="p-5 border-b border-white/10 flex items-center justify-between">
+      <div class="p-5 border-b border-luxe-borderLight flex items-center justify-between bg-luxe-cream">
         <div class="flex items-center gap-2">
-          <h3 class="font-bold text-white font-display text-sm uppercase tracking-wider">YOUR BAG</h3>
-          <span id="drawer-item-count" class="px-2 py-0.5 rounded-full bg-brand-accent/20 text-brand-accent text-xs font-mono font-bold">0</span>
+          <h3 class="font-serif font-bold text-base text-luxe-wine">YOUR SHOPPING BAG</h3>
+          <span id="drawer-item-count" class="px-2 py-0.5 rounded-full bg-luxe-wine text-white text-[10px] font-mono">0</span>
         </div>
-        <button onclick="toggleCart()" class="text-neutral-400 hover:text-white transition">
+        <button onclick="toggleCart()" class="text-luxe-textMuted hover:text-luxe-wine">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -752,40 +651,23 @@
       </div>
 
       <!-- Drawer Footer -->
-      <div class="p-5 border-t border-white/10 space-y-4 font-mono text-xs">
-        <div class="flex items-center gap-2">
-          <input 
-            type="text" 
-            id="promo-input" 
-            placeholder="PROMO CODE (TECH20)" 
-            class="flex-1 bg-black/50 border border-white/10 rounded-xl px-3.5 py-2 text-white placeholder-neutral-500 focus:outline-none focus:border-brand-accent uppercase"
-          >
-          <button onclick="applyPromo()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition">
-            APPLY
-          </button>
-        </div>
-        <div id="promo-status" class="text-[11px] hidden"></div>
-
-        <div class="space-y-1.5 pt-2 border-t border-white/10">
-          <div class="flex justify-between text-neutral-400">
+      <div class="p-5 border-t border-luxe-borderLight space-y-3 bg-luxe-cream font-sans text-xs">
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-luxe-textMuted">
             <span>SUBTOTAL</span>
-            <span id="cart-subtotal" class="text-white font-bold">₹0</span>
+            <span id="cart-subtotal" class="font-bold text-luxe-wine">₹0</span>
           </div>
-          <div class="flex justify-between text-neutral-400">
-            <span>DISCOUNT</span>
-            <span id="cart-discount" class="text-emerald-400">-₹0</span>
+          <div class="flex justify-between text-luxe-textMuted">
+            <span>WHITE-GLOVE DELIVERY</span>
+            <span class="text-emerald-700 font-medium">COMPLIMENTARY</span>
           </div>
-          <div class="flex justify-between text-neutral-400">
-            <span>SHIPPING</span>
-            <span class="text-neutral-300">FREE EXPRESS</span>
-          </div>
-          <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/10">
-            <span>TOTAL DUE</span>
-            <span id="cart-total" class="text-brand-accent">₹0</span>
+          <div class="flex justify-between text-sm font-bold text-luxe-wine pt-2 border-t border-luxe-borderLight">
+            <span>TOTAL AMOUNT</span>
+            <span id="cart-total" class="text-base text-luxe-wine">₹0</span>
           </div>
         </div>
 
-        <button onclick="openCheckoutModal()" class="w-full py-3 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold text-xs uppercase tracking-wider transition">
+        <button onclick="openCheckoutModal()" class="w-full py-3 rounded btn-gold text-xs uppercase font-medium">
           PROCEED TO CHECKOUT
         </button>
       </div>
@@ -794,43 +676,42 @@
   </div>
 
 
-  <!-- ============================================================= -->
-  <!-- MODAL: QUICK VIEW -->
-  <!-- ============================================================= -->
-  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="relative w-full max-w-2xl bg-[#14161b] border border-white/15 rounded-3xl overflow-hidden shadow-2xl">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black">
+  <!-- ================================================================= -->
+  <!-- MODAL: PRODUCT QUICK VIEW -->
+  <!-- ================================================================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden shadow-2xl border border-luxe-borderLight">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 text-luxe-wine flex items-center justify-center hover:bg-white shadow">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
       <div class="grid grid-cols-1 sm:grid-cols-2">
-        <div class="h-72 sm:h-96 bg-brand-studioGrey">
+        <div class="h-80 sm:h-96 bg-luxe-creamDark overflow-hidden">
           <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
         </div>
         <div class="p-6 flex flex-col justify-between space-y-4">
           <div class="space-y-2">
-            <div class="text-[10px] font-mono text-brand-accent uppercase" id="modal-product-category">GARMENT</div>
-            <h3 class="text-xl font-bold font-display text-white" id="modal-product-name">Product</h3>
+            <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-gold font-semibold" id="modal-product-category">COUTURE</span>
+            <h3 class="text-2xl font-serif text-luxe-wine font-medium" id="modal-product-name">Product Name</h3>
             
-            <div class="flex items-center gap-2 font-mono">
-              <span class="text-lg font-bold text-white" id="modal-product-price">₹0</span>
-              <span class="text-xs line-through text-neutral-500" id="modal-product-oldprice">₹0</span>
-            </div>
+            <div class="text-xl font-serif text-luxe-wine font-bold pt-1" id="modal-product-price">₹0</div>
 
-            <p class="text-xs text-neutral-400 leading-relaxed font-sans" id="modal-product-desc"></p>
+            <p class="text-xs text-luxe-textMuted leading-relaxed pt-2" id="modal-product-desc">
+              Tailored in Parisian atelier from imported mulberry silk and Italian corded lace. Finished with mother-of-pearl closures.
+            </p>
 
-            <div class="pt-2">
-              <div class="text-[11px] font-mono text-neutral-400 mb-1.5">SELECT SIZE</div>
+            <div class="pt-3">
+              <span class="text-[10px] font-sans tracking-widest uppercase text-luxe-textMuted block mb-1.5">SELECT SIZE</span>
               <div class="flex items-center gap-2">
-                <button class="size-btn active px-3 py-1 rounded-lg bg-brand-accent text-white font-mono text-xs">S</button>
-                <button class="size-btn px-3 py-1 rounded-lg bg-white/5 text-neutral-300 font-mono text-xs">M</button>
-                <button class="size-btn px-3 py-1 rounded-lg bg-white/5 text-neutral-300 font-mono text-xs">L</button>
-                <button class="size-btn px-3 py-1 rounded-lg bg-white/5 text-neutral-300 font-mono text-xs">XL</button>
+                <button class="size-btn active px-3 py-1 rounded border border-luxe-wine bg-luxe-wine text-white text-xs">XS</button>
+                <button class="size-btn px-3 py-1 rounded border border-luxe-borderLight text-luxe-textDark text-xs">S</button>
+                <button class="size-btn px-3 py-1 rounded border border-luxe-borderLight text-luxe-textDark text-xs">M</button>
+                <button class="size-btn px-3 py-1 rounded border border-luxe-borderLight text-luxe-textDark text-xs">L</button>
               </div>
             </div>
           </div>
 
-          <button id="modal-add-to-bag" class="w-full py-3 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition">
+          <button id="modal-add-to-bag" class="w-full py-3 rounded btn-gold text-xs uppercase font-medium">
             ADD TO BAG
           </button>
         </div>
@@ -839,84 +720,83 @@
   </div>
 
 
-  <!-- ============================================================= -->
+  <!-- ================================================================= -->
   <!-- MODAL: CHECKOUT -->
-  <!-- ============================================================= -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="w-full max-w-md bg-[#14161b] border border-white/15 rounded-3xl p-6 space-y-5">
-      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+  <!-- ================================================================= -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-md bg-white rounded-2xl p-6 space-y-5 border border-luxe-borderLight shadow-2xl">
+      <div class="flex items-center justify-between border-b border-luxe-borderLight pb-3">
         <div>
-          <h4 class="font-display font-bold text-base text-white">CHECKOUT PORTAL</h4>
-          <div class="text-[10px] font-mono text-neutral-400">ENCRYPTED 256-BIT DISPATCH</div>
+          <h4 class="font-serif font-bold text-lg text-luxe-wine">LUXURY DISPATCH</h4>
+          <div class="text-[10px] font-sans text-luxe-textMuted">ENCRYPTED 256-BIT WHITE GLOVE CHECKOUT</div>
         </div>
-        <button onclick="closeCheckoutModal()" class="text-neutral-400 hover:text-white">
+        <button onclick="closeCheckoutModal()" class="text-luxe-textMuted hover:text-luxe-wine">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div class="space-y-3 font-mono text-xs">
+      <div class="space-y-3 font-sans text-xs">
         <div>
-          <label class="block text-neutral-400 mb-1 text-[11px]">FULL NAME</label>
-          <input type="text" value="Sahil Sharma" class="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none">
+          <label class="block text-luxe-textMuted mb-1 text-[11px]">RECIPIENT NAME</label>
+          <input type="text" value="Aishwarya Verma" class="w-full bg-luxe-cream border border-luxe-borderLight rounded px-3 py-2 text-luxe-textDark focus:outline-none focus:border-luxe-gold">
         </div>
         <div>
-          <label class="block text-neutral-400 mb-1 text-[11px]">DELIVERY ADDRESS</label>
-          <input type="text" value="Bandra Cyber District, Mumbai 400050" class="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none">
+          <label class="block text-luxe-textMuted mb-1 text-[11px]">DELIVERY ADDRESS</label>
+          <input type="text" value="Altamount Road, Cumballa Hill, Mumbai 400026" class="w-full bg-luxe-cream border border-luxe-borderLight rounded px-3 py-2 text-luxe-textDark focus:outline-none focus:border-luxe-gold">
         </div>
         <div>
-          <label class="block text-neutral-400 mb-1 text-[11px]">PAYMENT</label>
-          <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
-            <div class="p-2 rounded-lg bg-brand-accent text-white font-bold cursor-pointer">UPI / GPAY</div>
-            <div class="p-2 rounded-lg bg-white/5 text-neutral-300 cursor-pointer">CARDS</div>
-            <div class="p-2 rounded-lg bg-white/5 text-neutral-300 cursor-pointer">NET BANK</div>
+          <label class="block text-luxe-textMuted mb-1 text-[11px]">PAYMENT PREFERENCE</label>
+          <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+            <div class="p-2 rounded bg-luxe-wine text-white font-medium cursor-pointer">UPI / GPAY</div>
+            <div class="p-2 rounded bg-luxe-cream border border-luxe-borderLight text-luxe-textDark cursor-pointer">AMEX / CARDS</div>
+            <div class="p-2 rounded bg-luxe-cream border border-luxe-borderLight text-luxe-textDark cursor-pointer">NET BANKING</div>
           </div>
         </div>
-        <div class="p-3 rounded-xl bg-white/[0.03] flex justify-between font-bold border border-white/5">
-          <span class="text-neutral-400">TOTAL:</span>
-          <span id="checkout-amount-display" class="text-brand-accent">₹0</span>
+        <div class="p-3 rounded bg-luxe-cream flex justify-between font-bold border border-luxe-borderLight">
+          <span class="text-luxe-textMuted">AMOUNT DUE:</span>
+          <span id="checkout-amount-display" class="text-luxe-wine text-sm font-serif">₹0</span>
         </div>
       </div>
 
-      <button onclick="completeCheckoutOrder()" class="w-full py-3 rounded-xl bg-brand-accent hover:bg-brand-accentHover text-white font-bold font-mono text-xs uppercase tracking-wider transition">
-        CONFIRM ORDER
+      <button onclick="completeCheckoutOrder()" class="w-full py-3 rounded btn-gold text-xs uppercase font-medium">
+        AUTHORIZE & COMPLETE ORDER
       </button>
     </div>
   </div>
 
 
-  <!-- ============================================================= -->
+  <!-- ================================================================= -->
   <!-- MODAL: SEARCH -->
-  <!-- ============================================================= -->
-  <div id="search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-24 p-4 bg-black/80 backdrop-blur-md">
-    <div class="w-full max-w-lg bg-[#14161b] border border-white/15 rounded-2xl p-5 space-y-4">
-      <div class="flex items-center gap-3 border-b border-white/10 pb-3">
-        <i data-lucide="search" class="w-4 h-4 text-brand-accent"></i>
+  <!-- ================================================================= -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-24 p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-lg bg-white rounded-2xl p-5 space-y-4 shadow-2xl border border-luxe-borderLight">
+      <div class="flex items-center gap-3 border-b border-luxe-borderLight pb-3">
+        <i data-lucide="search" class="w-4 h-4 text-luxe-gold"></i>
         <input 
           type="text" 
           id="search-input" 
           oninput="handleSearch(this.value)"
-          placeholder="SEARCH ANORAK, KIMONO, WINDBREAKER..." 
-          class="flex-1 bg-transparent text-white font-mono text-xs focus:outline-none placeholder-neutral-500 uppercase"
+          placeholder="SEARCH GOWN, SOIRÉE, WORKWEAR, ACCESSORIES..." 
+          class="flex-1 bg-transparent text-luxe-textDark font-sans text-xs focus:outline-none uppercase"
         >
-        <button onclick="closeSearchModal()" class="text-neutral-400 hover:text-white">
+        <button onclick="closeSearchModal()" class="text-luxe-textMuted hover:text-luxe-wine">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div id="search-results" class="max-h-64 overflow-y-auto space-y-2 text-xs font-mono">
-        <div class="text-neutral-500 py-3 text-center">Type keywords to query catalog...</div>
+      <div id="search-results" class="max-h-64 overflow-y-auto space-y-2 text-xs font-sans">
+        <div class="text-luxe-textMuted py-3 text-center">Type keywords to search boutique archives...</div>
       </div>
     </div>
   </div>
 
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-xl bg-brand-surfaceLight border border-white/10 text-white shadow-2xl font-mono text-xs">
-    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-    <span id="toast-message">Item added to bag</span>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3 rounded-xl bg-luxe-wine text-white shadow-2xl font-sans text-xs">
+    <span class="w-2 h-2 rounded-full bg-luxe-gold"></span>
+    <span id="toast-message">Garment added to bag</span>
   </div>
 
-  <!-- JavaScript application logic -->
   <script src="app.js"></script>
 </body>
 </html>

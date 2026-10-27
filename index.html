@@ -68,6 +68,35 @@
       background: #c99f66;
     }
 
+    /* Floating WhatsApp Button with pulsing ring */
+    .wa-float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: #25D366;
+      color: white;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .wa-float-btn:hover {
+      background: #20ba59;
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.6);
+    }
+    .wa-pulse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 9999px;
+      border: 2px solid #25D366;
+      animation: waPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+    @keyframes waPulse {
+      0% { transform: scale(0.95); opacity: 0.9; }
+      70% { transform: scale(1.3); opacity: 0; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
     /* Arched portal cards for "Shop By Occasion" */
     .occasion-arch {
       border-top-left-radius: 9999px;
@@ -201,48 +230,132 @@
   <!-- ================================================================= -->
   <!-- 2. MAIN STICKY NAVIGATION -->
   <!-- ================================================================= -->
-  <header id="mainNav" class="main-nav sticky top-0 z-40 bg-luxe-cream/95 backdrop-blur-md border-b border-luxe-borderLight px-4 sm:px-8 py-4">
-    <div class="max-w-[1380px] mx-auto flex items-center justify-between">
+  <header id="mainNav" class="main-nav sticky top-0 z-40 bg-luxe-cream/95 backdrop-blur-md border-b border-luxe-borderLight px-3 sm:px-8 py-3 sm:py-4">
+    <div class="max-w-[1380px] mx-auto flex items-center justify-between gap-2">
       
-      <!-- Left: Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7 text-xs font-sans tracking-widest uppercase text-luxe-textMuted">
-        <a href="#hero" class="nav-link text-luxe-textDark hover:text-luxe-gold transition font-medium">Home</a>
-        <a href="#occasions" class="nav-link hover:text-luxe-gold transition">Occasions</a>
-        <a href="#eveningwear" class="nav-link hover:text-luxe-gold transition">Eveningwear</a>
-        <a href="#workwear" class="nav-link hover:text-luxe-gold transition">Workwear</a>
-        <a href="#accessories" class="nav-link hover:text-luxe-gold transition">Accessories</a>
-        <a href="#styling" class="nav-link hover:text-luxe-gold transition">Styling</a>
-        <a href="#bestsellers" class="nav-link hover:text-luxe-gold transition">Bestsellers</a>
-      </nav>
+      <!-- Left: Mobile Hamburger Button & Desktop Links -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSideNav()" class="lg:hidden p-2 rounded-lg text-luxe-wine hover:bg-luxe-creamDark transition" title="Open Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+        <nav class="hidden lg:flex items-center gap-7 text-xs font-sans tracking-widest uppercase text-luxe-textMuted">
+          <a href="#hero" class="nav-link text-luxe-textDark hover:text-luxe-gold transition font-medium">Home</a>
+          <a href="#occasions" class="nav-link hover:text-luxe-gold transition">Occasions</a>
+          <a href="#eveningwear" class="nav-link hover:text-luxe-gold transition">Eveningwear</a>
+          <a href="#workwear" class="nav-link hover:text-luxe-gold transition">Workwear</a>
+          <a href="#accessories" class="nav-link hover:text-luxe-gold transition">Accessories</a>
+          <a href="#styling" class="nav-link hover:text-luxe-gold transition">Styling</a>
+          <a href="#bestsellers" class="nav-link hover:text-luxe-gold transition">Bestsellers</a>
+        </nav>
+      </div>
 
       <!-- Center: Brand Logo -->
-      <a href="#hero" class="text-center group">
-        <span class="block text-xl sm:text-2xl font-serif tracking-widest text-luxe-wine uppercase font-semibold">
-          MAISON AURELIA
+      <a href="#hero" class="text-center group flex flex-col items-center">
+        <span class="block text-lg sm:text-2xl lg:text-3xl font-serif tracking-[0.14em] sm:tracking-[0.16em] text-luxe-wine uppercase font-black drop-shadow-sm group-hover:text-luxe-gold transition-colors duration-300">
+          KIDOZ KIDS FASHION
         </span>
-        <span class="block text-[9px] font-sans tracking-widest text-luxe-gold uppercase -mt-0.5">
-          HAUTE COUTURE • PARIS
+        <span class="inline-block mt-0.5 px-2.5 sm:px-3 py-0.5 rounded-full bg-gradient-to-r from-amber-500/15 via-rose-500/15 to-purple-500/15 border border-luxe-gold/40 text-[8px] sm:text-[10px] font-sans tracking-[0.14em] sm:tracking-[0.18em] font-extrabold text-luxe-wine uppercase whitespace-nowrap">
+          ★ CUTE STYLES, HAPPY SMILES • 6M–50Y ★
         </span>
       </a>
 
       <!-- Right: Tools -->
-      <div class="flex items-center gap-4 text-xs font-sans tracking-wider text-luxe-textDark">
-        <button onclick="openSearchModal()" class="p-1 hover:text-luxe-gold transition" title="Search">
+      <div class="flex items-center gap-2 sm:gap-4 text-xs font-sans tracking-wider text-luxe-textDark">
+        <a href="https://wa.me/919891138821" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold" title="WhatsApp Order">
+          <i data-lucide="phone" class="w-3 h-3 text-emerald-600"></i>
+          <span>9891138821</span>
+        </a>
+        <button onclick="openSearchModal()" class="p-1.5 hover:text-luxe-gold transition" title="Search">
           <i data-lucide="search" class="w-4 h-4"></i>
         </button>
-        <button onclick="showToast('WISHLIST: 4 ITEMS SAVED')" class="p-1 hover:text-luxe-gold transition relative" title="Wishlist">
+        <button onclick="showToast('WISHLIST: 4 ITEMS SAVED')" class="p-1.5 hover:text-luxe-gold transition relative" title="Wishlist">
           <i data-lucide="heart" class="w-4 h-4"></i>
           <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-luxe-gold text-white rounded-full text-[9px] flex items-center justify-center font-bold">4</span>
         </button>
-        <button onclick="toggleCart()" class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxe-wine text-white hover:bg-luxe-wineLight transition shadow-sm">
+        <button onclick="toggleCart()" class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-luxe-wine text-white hover:bg-luxe-wineLight transition shadow-sm">
           <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-luxe-gold"></i>
-          <span class="font-medium text-xs">BAG</span>
+          <span class="font-medium text-xs hidden xs:inline">BAG</span>
           <span id="header-cart-count" class="count-badge text-luxe-gold font-bold">0</span>
         </button>
       </div>
 
     </div>
   </header>
+
+  <!-- ================================================================= -->
+  <!-- SIDE NAVIGATION DRAWER (Mobile & Tablet)                          -->
+  <!-- ================================================================= -->
+  <div id="sideNavDrawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+    <!-- Backdrop -->
+    <div id="sideNavBackdrop" onclick="toggleSideNav()" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+    <!-- Slide Panel -->
+    <div id="sideNavPanel" class="absolute left-0 top-0 bottom-0 w-[85%] max-w-xs bg-luxe-cream shadow-2xl flex flex-col -translate-x-full transition-transform duration-300 pointer-events-auto border-r border-luxe-borderLight">
+      
+      <!-- Drawer Header -->
+      <div class="p-5 border-b border-luxe-borderLight flex items-center justify-between bg-luxe-wine text-white">
+        <div>
+          <div class="font-serif font-bold text-base tracking-widest text-white">KIDOZ FASHION</div>
+          <div class="text-[9px] font-sans text-luxe-gold tracking-widest">CUTE STYLES, HAPPY SMILES</div>
+        </div>
+        <button onclick="toggleSideNav()" class="text-luxe-gold hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Links List -->
+      <div class="flex-1 overflow-y-auto p-5 space-y-4 font-sans text-sm tracking-wider uppercase font-semibold text-luxe-wine">
+        <a href="#hero" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Home</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#kidoz-section" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 text-emerald-800 font-bold hover:text-emerald-600">
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Kids Collection (₹250+)</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-600"></i>
+        </a>
+        <a href="#occasions" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Occasions</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#eveningwear" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Eveningwear</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#workwear" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Workwear</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#accessories" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Accessories</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#styling" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Styling Lookbook</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+        <a href="#bestsellers" onclick="toggleSideNav()" class="flex items-center justify-between py-2 border-b border-luxe-borderLight/60 hover:text-luxe-gold">
+          <span>Bestsellers</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-luxe-gold"></i>
+        </a>
+      </div>
+
+      <!-- Drawer Footer Contact Callout -->
+      <div class="p-5 border-t border-luxe-borderLight bg-white space-y-3">
+        <a href="https://wa.me/919891138821" target="_blank" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-200 transition">
+          <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
+          <span>WHATSAPP: 9891138821</span>
+        </a>
+        <div class="text-[10px] text-center text-slate-500 font-sans">
+          Instagram: <strong>@kidozkidsfashion</strong> • 6M–50Y
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
   <!-- ================================================================= -->
@@ -345,6 +458,115 @@
     <!-- 8 High Quality Arched Portal Cards Grid -->
     <div id="occasions-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
       <!-- Populated dynamically via app.js with 8 high-res cards -->
+    </div>
+
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- KIDOZ KIDS FASHION SHOWCASE SECTION (Starts at ₹250)              -->
+  <!-- ================================================================= -->
+  <section id="kidoz-section" class="py-16 sm:py-24 px-4 sm:px-8 max-w-[1400px] mx-auto border-t border-luxe-borderLight">
+    
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 section-head">
+      <div>
+        <span class="text-[11px] font-sans tracking-widest uppercase text-pink-600 font-semibold block">OFFICIAL STORE COLLECTION</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-luxe-wine leading-tight mt-1">
+          Cute Styles, Happy Smiles
+        </h2>
+        <div class="w-16 h-0.5 bg-pink-500 mt-3"></div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <p class="text-xs text-luxe-textMuted max-w-sm hidden sm:block">
+          Dresses, frocks, casual sets and ethnic wear for 6 Months – 50 Years. Starting from ₹250 with WhatsApp direct delivery.
+        </p>
+        <a href="https://wa.me/919891138821" target="_blank" class="inline-flex items-center gap-2 text-xs font-sans tracking-widest uppercase text-emerald-700 border-b border-emerald-600 pb-1 hover:text-emerald-800 transition whitespace-nowrap font-bold">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-current"></i>
+          <span>ORDER ON WHATSAPP: 9891138821</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 6 Age-Group Highlight Cards (from Reference Image 1) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10">
+      
+      <div onclick="filterKidozCategory('infants')" class="cursor-pointer bg-white p-4 rounded-2xl border border-pink-100 hover:border-pink-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-pink-50 text-pink-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="baby" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Infants & Babies</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">6 – 24 Months</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">From ₹250</span>
+      </div>
+
+      <div onclick="filterKidozCategory('girls')" class="cursor-pointer bg-white p-4 rounded-2xl border border-amber-100 hover:border-amber-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Girls Frocks & Sets</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">2 – 10 Years</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">From ₹299</span>
+      </div>
+
+      <div onclick="filterKidozCategory('boys')" class="cursor-pointer bg-white p-4 rounded-2xl border border-sky-100 hover:border-sky-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-sky-50 text-sky-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="shirt" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Boys T-Shirts & Sets</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">2 – 12 Years</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full">From ₹250</span>
+      </div>
+
+      <div onclick="filterKidozCategory('party')" class="cursor-pointer bg-white p-4 rounded-2xl border border-purple-100 hover:border-purple-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-purple-50 text-purple-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="crown" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Birthday & Party</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">Princess & Prince</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">From ₹499</span>
+      </div>
+
+      <div onclick="filterKidozCategory('party')" class="cursor-pointer bg-white p-4 rounded-2xl border border-emerald-100 hover:border-emerald-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="palette" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Festive Kurtas</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">All Occasions</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">From ₹450</span>
+      </div>
+
+      <div onclick="filterKidozCategory('all')" class="cursor-pointer bg-white p-4 rounded-2xl border border-rose-100 hover:border-rose-300 hover:shadow-md transition text-center group">
+        <div class="w-12 h-12 mx-auto rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mb-2.5 group-hover:scale-110 transition">
+          <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-bold text-slate-800 text-xs">Family & Teens</h4>
+        <p class="text-[10px] text-slate-400 mt-0.5">Up to 50 Years!</p>
+        <span class="inline-block mt-2 text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">View All</span>
+      </div>
+
+    </div>
+
+    <!-- Category Filter Pills & Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pt-4 border-t border-slate-100">
+      <div>
+        <span class="text-[10px] font-bold text-pink-600 tracking-widest uppercase">OUR COLLECTION</span>
+        <h3 class="text-2xl font-serif font-bold text-slate-800 mt-0.5">Trending Kids Styles</h3>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="filterKidozCategory('all')" class="kidoz-cat-btn active px-4 py-1.5 rounded-full text-xs font-bold bg-pink-500 text-white transition">All Items</button>
+        <button onclick="filterKidozCategory('infants')" class="kidoz-cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:border-pink-300 transition">Infants (6M-2Y)</button>
+        <button onclick="filterKidozCategory('girls')" class="kidoz-cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:border-pink-300 transition">Girls Frocks</button>
+        <button onclick="filterKidozCategory('boys')" class="kidoz-cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:border-pink-300 transition">Boys Sets</button>
+        <button onclick="filterKidozCategory('party')" class="kidoz-cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:border-pink-300 transition">Party & Ethnic</button>
+      </div>
+    </div>
+
+    <!-- 8 High-Res Product Cards Grid (Matching Reference Image 1 exactly) -->
+    <div id="kidoz-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Rendered dynamically by app.js -->
     </div>
 
   </section>
@@ -576,10 +798,16 @@
     <div class="max-w-[1380px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-10 text-xs font-sans">
       
       <div class="space-y-3">
-        <h4 class="text-lg font-serif text-white tracking-widest">MAISON AURELIA</h4>
+        <div class="flex items-center gap-2">
+          <img src="assets/kidoz_avatar.png" alt="kidozkidsfashion" class="w-8 h-8 rounded-full border border-luxe-gold/50 object-cover">
+          <h4 class="text-lg font-serif text-white tracking-widest">KIDOZ KIDS FASHION</h4>
+        </div>
         <p class="text-luxe-creamDark/70 text-[11px] leading-relaxed">
-          Crafting timeless silhouettes for unforgettable evenings and milestones. Designed in Paris, handcrafted by artisan ateliers.
+          Cute Styles, Happy Smiles. Official Instagram: @kidozkidsfashion. Premium collections for children & families (6 Months – 50 Years) starting from ₹250.
         </p>
+        <div class="text-xs text-luxe-gold font-bold">
+          📲 Order on WhatsApp: 9891138821
+        </div>
       </div>
 
       <div class="space-y-2">
@@ -614,7 +842,7 @@
     </div>
 
     <div class="max-w-[1380px] mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-luxe-creamDark/50">
-      <div>© 2026 MAISON AURELIA COUTURE. ALL RIGHTS RESERVED.</div>
+      <div>© 2026 KIDOZ KIDS FASHION (@kidozkidsfashion). ALL RIGHTS RESERVED.</div>
       <div class="flex items-center gap-4 mt-2 sm:mt-0">
         <a href="#" class="hover:underline">PRIVACY</a>
         <span>•</span>
@@ -790,6 +1018,18 @@
     </div>
   </div>
 
+
+  <!-- FLOATING WHATSAPP BUTTON (9891138821) -->
+  <a 
+    href="https://wa.me/919891138821?text=Hello%20Kidoz%20Kids%20Fashion,%20I%20am%20browsing%20your%20store%20and%20want%20to%20order!" 
+    target="_blank"
+    class="wa-float-btn group flex items-center gap-2.5 px-4 py-3 rounded-full text-white font-sans text-xs font-bold"
+    title="Order on WhatsApp: 9891138821"
+  >
+    <span class="wa-pulse-ring"></span>
+    <i data-lucide="message-circle" class="w-5 h-5 fill-current"></i>
+    <span class="hidden sm:inline tracking-wider">ORDER ON WHATSAPP</span>
+  </a>
 
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3 rounded-xl bg-luxe-wine text-white shadow-2xl font-sans text-xs">

@@ -219,8 +219,120 @@ const BESTSELLERS = [
   }
 ];
 
+const WHATSAPP_PHONE = '919891138821';
+
+/* ================================================================= */
+/* KIDOZ KIDS FASHION CATALOG (Starts at ₹250)                       */
+/* ================================================================= */
+const KIDOZ_PRODUCTS = [
+  {
+    id: 'kidoz-01',
+    name: 'Baby Organic Cotton Romper Set',
+    category: 'infants',
+    categoryLabel: 'Infants (6M-2Y)',
+    price: 250,
+    oldPrice: 499,
+    tag: 'STARTS AT ₹250',
+    tagColor: 'bg-emerald-500',
+    image: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=800&q=85',
+    description: '100% breathable organic combed cotton baby romper with easy snap buttons. Super gentle on delicate baby skin.',
+    sizes: ['6-12M', '12-18M', '18-24M']
+  },
+  {
+    id: 'kidoz-02',
+    name: 'Sparkle Princess Fairy Birthday Frock',
+    category: 'girls',
+    categoryLabel: 'Girls Frocks',
+    price: 499,
+    oldPrice: 899,
+    tag: 'BEST SELLER',
+    tagColor: 'bg-pink-500',
+    image: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=800&q=85',
+    description: 'Magical multilayered tulle party dress with satin bow and cotton inner lining. Ideal for birthdays and celebrations.',
+    sizes: ['1-2Y', '2-4Y', '4-6Y', '7-9Y']
+  },
+  {
+    id: 'kidoz-03',
+    name: 'Boys Dino Print Casual Tee & Shorts',
+    category: 'boys',
+    categoryLabel: 'Boys Sets',
+    price: 299,
+    oldPrice: 599,
+    tag: 'HOT DEAL',
+    tagColor: 'bg-amber-500',
+    image: 'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=800&q=85',
+    description: 'Playful dinosaur graphic printed crewneck t-shirt paired with comfortable elasticated drawstring cotton shorts.',
+    sizes: ['1-2Y', '2-4Y', '5-7Y', '8-10Y']
+  },
+  {
+    id: 'kidoz-04',
+    name: 'Denim Dungaree with Striped Inner Tee',
+    category: 'boys',
+    categoryLabel: 'Boys & Girls',
+    price: 399,
+    oldPrice: 799,
+    tag: 'TRENDING',
+    tagColor: 'bg-purple-500',
+    image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=85',
+    description: 'Soft washed denim overall dungaree with adjustable metal clips and matching high-grade cotton inner t-shirt.',
+    sizes: ['1-2Y', '2-3Y', '3-5Y', '5-7Y']
+  },
+  {
+    id: 'kidoz-05',
+    name: 'Royal Festive Silk Kurta Pajama Set',
+    category: 'party',
+    categoryLabel: 'Party & Ethnic',
+    price: 450,
+    oldPrice: 899,
+    tag: 'FESTIVE SPECIAL',
+    tagColor: 'bg-orange-500',
+    image: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=800&q=85',
+    description: 'Traditional jacquard silk blend kurta with comfortable cotton churidar pyjama. Perfect for weddings, Diwali and pujas.',
+    sizes: ['1-2Y', '2-4Y', '5-7Y', '8-11Y', '12-14Y']
+  },
+  {
+    id: 'kidoz-06',
+    name: 'Pastel Floral Summer Tiered Sundress',
+    category: 'girls',
+    categoryLabel: 'Girls Frocks',
+    price: 349,
+    oldPrice: 699,
+    tag: 'CUTE STYLES',
+    tagColor: 'bg-rose-500',
+    image: 'https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=800&q=85',
+    description: 'Vibrant handcrafted floral prints on airy lightweight cotton. Keeps little angels cool, stylish and happy all day long.',
+    sizes: ['1-2Y', '2-4Y', '4-6Y', '6-9Y']
+  },
+  {
+    id: 'kidoz-07',
+    name: 'Gentleman Waistcoat, Shirt & Pant 3-Piece',
+    category: 'party',
+    categoryLabel: 'Party Wear',
+    price: 699,
+    oldPrice: 1299,
+    tag: 'PARTY HIT',
+    tagColor: 'bg-blue-600',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=85',
+    description: 'Dapper 3-piece formal outfit featuring smart tailored vest coat, crisp collar shirt and matching tailored trousers.',
+    sizes: ['2-3Y', '4-5Y', '6-7Y', '8-10Y', '11-14Y']
+  },
+  {
+    id: 'kidoz-08',
+    name: 'Newborn 3-Piece Soft Cotton Gift Set',
+    category: 'infants',
+    categoryLabel: 'Infants (6M-2Y)',
+    price: 280,
+    oldPrice: 550,
+    tag: 'BABY ESSENTIAL',
+    tagColor: 'bg-teal-500',
+    image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=85',
+    description: 'Includes matching front-open kimono top, stretch pyjama and baby beanie cap. Made from pure hypoallergenic cotton.',
+    sizes: ['0-6M', '6-12M', '12-18M']
+  }
+];
+
 // Combine all for modal lookups
-const ALL_PRODUCTS = [...OCCASIONS, ...STYLING_LOOKS, ...BESTSELLERS];
+const ALL_PRODUCTS = [...OCCASIONS, ...STYLING_LOOKS, ...BESTSELLERS, ...KIDOZ_PRODUCTS];
 
 // Cart State
 let cart = JSON.parse(localStorage.getItem('maison_aurelia_cart')) || [];
@@ -235,6 +347,7 @@ const ANNOUNCEMENTS = [
 
 // Document Ready
 document.addEventListener('DOMContentLoaded', () => {
+  renderKidozProducts();
   renderOccasions();
   renderStyling();
   renderBestsellers();
@@ -244,6 +357,140 @@ document.addEventListener('DOMContentLoaded', () => {
   initGSAPAnimations();
   lucide.createIcons();
 });
+
+let currentKidozCategory = 'all';
+
+function renderKidozProducts() {
+  const container = document.getElementById('kidoz-product-grid');
+  if (!container) return;
+
+  const filtered = currentKidozCategory === 'all' 
+    ? KIDOZ_PRODUCTS 
+    : KIDOZ_PRODUCTS.filter(p => p.category === currentKidozCategory);
+
+  container.innerHTML = filtered.map(prod => `
+    <div class="kidoz-card group bg-white rounded-3xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+      
+      <!-- Image & Badges -->
+      <div class="relative aspect-square overflow-hidden bg-pink-50/40">
+        <img 
+          src="${prod.image}" 
+          alt="${prod.name}" 
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+        >
+        <!-- Floating tag -->
+        <span class="absolute top-3 left-3 text-[10px] font-extrabold text-white px-2.5 py-1 rounded-full ${prod.tagColor} shadow">
+          ${prod.tag}
+        </span>
+
+        <!-- Direct WhatsApp Quick Order Button -->
+        <button 
+          onclick="orderSingleProductWhatsApp('${prod.id}')"
+          title="Instant Order on WhatsApp"
+          class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 text-emerald-600 hover:bg-emerald-500 hover:text-white flex items-center justify-center shadow transition-all transform hover:scale-110"
+        >
+          <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
+        </button>
+
+        <!-- Quick View button on hover -->
+        <div class="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <button 
+            onclick="openProductModal('${prod.id}')"
+            class="w-full py-2 bg-white/95 backdrop-blur text-slate-800 text-xs font-bold rounded-xl shadow hover:bg-pink-50 transition"
+          >
+            Quick View & Size Select
+          </button>
+        </div>
+      </div>
+
+      <!-- Info Area -->
+      <div class="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-pink-600 uppercase tracking-wider block mb-1">
+            ${prod.categoryLabel}
+          </span>
+          <h3 class="font-display font-semibold text-slate-800 text-base leading-snug line-clamp-2">
+            ${prod.name}
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+            ${prod.description}
+          </p>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100">
+          <div class="flex items-baseline justify-between mb-3">
+            <div class="flex items-baseline gap-2">
+              <span class="text-xl font-extrabold text-slate-900">${formatINR(prod.price)}</span>
+              <span class="text-xs text-slate-400 line-through">${formatINR(prod.oldPrice)}</span>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
+              Free Delivery
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              onclick="addToBagById('${prod.id}')" 
+              class="w-full py-2.5 rounded-xl bg-pink-50 hover:bg-pink-500 text-pink-600 hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 border border-pink-200"
+            >
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Add to Bag</span>
+            </button>
+            <button 
+              onclick="orderSingleProductWhatsApp('${prod.id}')" 
+              class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 shadow shadow-emerald-200"
+            >
+              <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Order Now</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  `).join('');
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+function filterKidozCategory(cat) {
+  currentKidozCategory = cat;
+  document.querySelectorAll('.kidoz-cat-btn').forEach(btn => {
+    btn.classList.remove('bg-pink-500', 'text-white', 'active');
+    btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+  });
+
+  const activeBtn = event ? event.target.closest('button') : null;
+  if (activeBtn) {
+    activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+    activeBtn.classList.add('bg-pink-500', 'text-white', 'active');
+  }
+
+  renderKidozProducts();
+}
+
+function orderSingleProductWhatsApp(productId) {
+  const prod = ALL_PRODUCTS.find(p => p.id === productId);
+  if (!prod) return;
+
+  const defaultSize = prod.sizes ? prod.sizes[0] : 'Standard';
+  const text = 
+`🎀 *ORDER INQUIRY - KIDOZ KIDS FASHION* 🎀
+-----------------------------------------
+🛍️ *Item:* ${prod.name}
+💰 *Price:* ${formatINR(prod.price)} ${prod.oldPrice ? `(M.R.P: ${formatINR(prod.oldPrice)})` : ''}
+👶 *Age / Size:* ${defaultSize}
+🚚 *Delivery:* Free All-India Shipping
+-----------------------------------------
+Hello Kidoz Fashion! I want to order this item. Please share payment details and confirm availability.`;
+
+  const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`;
+  window.open(waUrl, '_blank');
+}
 
 /* ======================================================= */
 /* RENDER FUNCTIONS FOR EXPANDED HIGH-RES CARDS            */
@@ -478,6 +725,16 @@ function initGSAPAnimations() {
       { y: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: "power3.out" }
     )
   });
+
+  // Kidoz Product Cards Entrance Stagger
+  ScrollTrigger.batch(".kidoz-card", {
+    start: "top 90%",
+    once: true,
+    onEnter: batch => gsap.fromTo(batch, 
+      { y: 30, opacity: 0 }, 
+      { y: 0, opacity: 1, stagger: 0.07, duration: 0.7, ease: "power3.out" }
+    )
+  });
 }
 
 /* ======================================================= */
@@ -594,6 +851,27 @@ function updateCartUI() {
   }
 
   lucide.createIcons();
+}
+
+function toggleSideNav() {
+  const drawer = document.getElementById('sideNavDrawer');
+  const panel = document.getElementById('sideNavPanel');
+  const backdrop = document.getElementById('sideNavBackdrop');
+  if (!drawer || !panel || !backdrop) return;
+
+  const isOpen = !drawer.classList.contains('pointer-events-none');
+
+  if (isOpen) {
+    panel.classList.add('-translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+      drawer.classList.add('pointer-events-none');
+    }, 300);
+  } else {
+    drawer.classList.remove('pointer-events-none');
+    panel.classList.remove('-translate-x-full');
+    backdrop.classList.remove('opacity-0');
+  }
 }
 
 function toggleCart() {
